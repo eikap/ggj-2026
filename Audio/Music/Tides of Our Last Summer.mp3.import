@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b1rlh4rblot76"
+path="res://.godot/imported/Tides of Our Last Summer.mp3-1c34403ad8b12055e298bc8fda53470e.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Tides of Our Last Summer.mp3"
+dest_files=["res://.godot/imported/Tides of Our Last Summer.mp3-1c34403ad8b12055e298bc8fda53470e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
