@@ -7,7 +7,7 @@ signal player_connected(peer_id, player_info)
 signal player_disconnected(peer_id)
 signal server_disconnected
 
-const PORT = 7000
+const PORT = 7001
 const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
 const MAX_CONNECTIONS = 20
 
@@ -36,22 +36,26 @@ func _ready():
 func join_game(address = ""):
 	if address.is_empty():
 		address = DEFAULT_SERVER_IP
-	var peer = ENetMultiplayerPeer.new()
-	var error = peer.create_client(address, PORT)
+	var peer = WebSocketMultiplayerPeer.new()
+	var error = peer.create_client(address+":"+ str(PORT))
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
+	return OK
 
 
 func create_game():
-	var peer = ENetMultiplayerPeer.new()
-	var error = peer.create_server(PORT, MAX_CONNECTIONS)
+	var peer = WebSocketMultiplayerPeer.new()
+	var error = peer.create_server(PORT)
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
 
-	players[1] = player_info
-	player_connected.emit(1, player_info)
+	if !OS.has_feature("dedicated_server"):
+		players[1] = player_info
+		player_connected.emit(1, player_info)
+		
+	return OK
 
 
 func remove_multiplayer_peer():
@@ -61,7 +65,7 @@ func remove_multiplayer_peer():
 
 # When the server decides to start the game from a UI scene,
 # do Lobby.load_game.rpc(filepath)
-@rpc("call_local", "reliable")
+@rpc("any_peer", "call_local", "reliable")
 func load_game(game_scene_path):
 	get_tree().change_scene_to_file(game_scene_path)
 
@@ -79,7 +83,8 @@ func player_loaded():
 # When a peer connects, send them my player info.
 # This allows transfer of all desired data for each player, not only the unique ID.
 func _on_player_connected(id):
-	_register_player.rpc_id(id, player_info)
+	if !OS.has_feature("dedicated_server"):
+		_register_player.rpc_id(id, player_info)
 
 
 @rpc("any_peer", "reliable")
@@ -95,6 +100,7 @@ func _on_player_disconnected(id):
 
 
 func _on_connected_ok():
+	print("Connected OK!")
 	var peer_id = multiplayer.get_unique_id()
 	players[peer_id] = player_info
 	player_connected.emit(peer_id, player_info)

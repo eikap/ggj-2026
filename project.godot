@@ -11,13 +11,24 @@ config_version=5
 [application]
 
 config/name="Divers"
-run/main_scene="uid://kxb573oc4rmo"
+run/main_scene="uid://dufbwtr7g2wuy"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://dfa5x4tid1e2c"
 
 [autoload]
 
 Network="*uid://urxyyq2fc503"
+
+[display]
+
+window/size/viewport_width=240
+window/size/viewport_height=426
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [physics]
 

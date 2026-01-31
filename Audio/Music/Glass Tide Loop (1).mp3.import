@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://chr7stq6axyop"
+path="res://.godot/imported/Glass Tide Loop (1).mp3-2330f64180cddac5b822f8977ae19fcb.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Glass Tide Loop (1).mp3"
+dest_files=["res://.godot/imported/Glass Tide Loop (1).mp3-2330f64180cddac5b822f8977ae19fcb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

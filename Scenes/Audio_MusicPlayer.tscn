@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dafoj32escdyx"]
+
+[ext_resource type="AudioStream" uid="uid://chr7stq6axyop" path="res://Audio/Music/Glass Tide Loop (1).mp3" id="1_lno32"]
+[ext_resource type="AudioStream" uid="uid://c3lok2ydl3ty5" path="res://Audio/Music/Glass Tide Loop.mp3" id="2_u0ymm"]
+[ext_resource type="AudioStream" uid="uid://mhkm1k2y1ctg" path="res://Audio/Music/Tides of Our Last Summer (1).mp3" id="3_j6mm6"]
+[ext_resource type="AudioStream" uid="uid://b1rlh4rblot76" path="res://Audio/Music/Tides of Our Last Summer.mp3" id="4_tuasd"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_p2uio"]
+shuffle = true
+fade_time = 1.0
+stream_count = 4
+stream_0 = ExtResource("1_lno32")
+stream_1 = ExtResource("2_u0ymm")
+stream_2 = ExtResource("3_j6mm6")
+stream_3 = ExtResource("4_tuasd")
+
+[node name="Audio_MusicPlayer" type="Node3D" unique_id=230560115]
+
+[node name="Music_AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=249789733]
+stream = SubResource("AudioStreamPlaylist_p2uio")
+autoplay = true
+bus = &"Music"
+playback_type = 1
