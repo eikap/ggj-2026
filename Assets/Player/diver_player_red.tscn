@@ -1,8 +1,9 @@
-[gd_scene format=3 uid="uid://b2ut7aqnekc43"]
+[gd_scene format=3 uid="uid://cjhi4ebxs1wu7"]
 
-[ext_resource type="PackedScene" uid="uid://ygca4ihdpyqs" path="res://Assets/Player/diver_player.fbx" id="1_gi5yp"]
-[ext_resource type="Material" uid="uid://b245ekkaf6icf" path="res://Assets/Player/body_material_yellow.tres" id="2_n8wlm"]
-[ext_resource type="Material" uid="uid://mwj3c7ouinot" path="res://Assets/Player/arm_material.tres" id="3_gmsqa"]
+[ext_resource type="PackedScene" uid="uid://ygca4ihdpyqs" path="res://Assets/Player/diver_player.fbx" id="1_imj4l"]
+[ext_resource type="Material" uid="uid://lmjihwi7hs7n" path="res://Assets/Player/body_material_red.tres" id="2_imj4l"]
+[ext_resource type="Material" uid="uid://b245ekkaf6icf" path="res://Assets/Player/body_material_yellow.tres" id="3_p3x1u"]
+[ext_resource type="Material" uid="uid://mwj3c7ouinot" path="res://Assets/Player/arm_material.tres" id="4_2cvfl"]
 
 [sub_resource type="Animation" id="Animation_8peud"]
 loop_mode = 1
@@ -43,7 +44,7 @@ _data = {
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxpnx"]
 
-[node name="diver" unique_id=297256398 instance=ExtResource("1_gi5yp")]
+[node name="diver" unique_id=297256398 instance=ExtResource("1_imj4l")]
 
 [node name="Light" parent="." index="0" unique_id=2109334356]
 visible = false
@@ -52,16 +53,16 @@ visible = false
 visible = false
 
 [node name="body" parent="." index="2" unique_id=74950057]
-material_override = ExtResource("2_n8wlm")
-surface_material_override/0 = ExtResource("2_n8wlm")
+material_override = ExtResource("2_imj4l")
+surface_material_override/0 = ExtResource("3_p3x1u")
 
 [node name="arms" parent="." index="3" unique_id=1108133026]
-material_override = ExtResource("3_gmsqa")
-surface_material_override/0 = ExtResource("2_n8wlm")
+material_override = ExtResource("4_2cvfl")
+surface_material_override/0 = ExtResource("3_p3x1u")
 
 [node name="r_leg" parent="." index="4" unique_id=707106354]
-transform = Transform3D(1, 0, 0, 0, 0.98008466, -0.1985797, 0, 0.1985797, 0.98008466, -0.17000507, 1.0939391, 0.03338457)
-material_override = ExtResource("2_n8wlm")
+transform = Transform3D(1, 0, 0, 0, 0.9800847, -0.1985797, 0, 0.1985797, 0.9800847, -0.17000507, 1.0939391, 0.03338457)
+material_override = ExtResource("2_imj4l")
 
 [node name="leganim" type="AnimationPlayer" parent="r_leg" index="0" unique_id=1134525821]
 root_node = NodePath("../..")
@@ -69,12 +70,12 @@ libraries/ = SubResource("AnimationLibrary_8peud")
 
 [node name="l_leg" parent="." index="5" unique_id=143885794]
 transform = Transform3D(1, 0, 0, 0, 0.9563047, -0.29237166, 0, 0.29237166, 0.9563047, 0.16762425, 1.0793327, 0.04141904)
-material_override = ExtResource("2_n8wlm")
+material_override = ExtResource("2_imj4l")
 
 [node name="leganim" type="AnimationPlayer" parent="l_leg" index="0" unique_id=965550042]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_8peud")
 
 [node name="googles" parent="." index="6" unique_id=1623008435]
-material_override = ExtResource("3_gmsqa")
+material_override = ExtResource("4_2cvfl")
 surface_material_override/0 = SubResource("StandardMaterial3D_vxpnx")
