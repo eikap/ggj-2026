@@ -1,3 +1,37 @@
 [gd_scene format=3 uid="uid://dufbwtr7g2wuy"]
 
-[node name="LobbyTest" type="Node3D" unique_id=1866654882]
+[ext_resource type="Script" uid="uid://dw0qsaon6uuyf" path="res://Scripts/lobby.gd" id="1_60hj3"]
+
+[node name="LobbyTest" type="Node3D" unique_id=1866654882 node_paths=PackedStringArray("statusText", "ipInput", "playerNameInput")]
+script = ExtResource("1_60hj3")
+statusText = NodePath("VBoxContainer/Label")
+ipInput = NodePath("VBoxContainer/IP")
+playerNameInput = NodePath("VBoxContainer/PlayerName")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1962825021]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1001263600]
+layout_mode = 2
+text = "Join or Host Game"
+
+[node name="PlayerName" type="TextEdit" parent="VBoxContainer" unique_id=1304615565]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=938463413]
+layout_mode = 2
+text = "Host Game"
+
+[node name="IP" type="TextEdit" parent="VBoxContainer" unique_id=1231275400]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "127.0.0.1"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=1380734735]
+layout_mode = 2
+text = "Join Game"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="on_host_clicked"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="on_join_clicked"]

@@ -41,6 +41,7 @@ func join_game(address = ""):
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
+	return OK
 
 
 func create_game():
@@ -52,6 +53,7 @@ func create_game():
 
 	players[1] = player_info
 	player_connected.emit(1, player_info)
+	return OK
 
 
 func remove_multiplayer_peer():
