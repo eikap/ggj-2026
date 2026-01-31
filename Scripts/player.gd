@@ -11,22 +11,30 @@ extends Node3D
 @export var diver : Diver
 @export var detectionArea : Area3D
 @export var oxygenLabel : Label3D
-@export var oxygenDepletionRate = 10
+@export var oxygenDepletionRate = 8
 
 var moveVelocity : Vector2
 var networkPosition : Vector3
 var mousePressed : bool = false
 
 var oxygen = 100.0
-var victory = false
+var survived = false
 
 var targetPlayer : Player
 var crushID : int
 
 func _process(delta):
-	if(victory):
+	var crushPlayer : Player = get_crush_player()
+	if(crushPlayer && crushPlayer.oxygen <= 0):
 		if(oxygenLabel):
-			oxygenLabel.text = "Won!"
+			oxygenLabel.text = "Crush Dead!"
+			
+			return
+			
+	
+	if(survived):
+		if(oxygenLabel):
+			oxygenLabel.text = "Survived!"
 			
 		return
 	
@@ -75,13 +83,13 @@ func _process(delta):
 		var name = Network.players[get_multiplayer_authority()].name
 		
 		if(localPlayer && localPlayer.crushID == get_multiplayer_authority()):
-			oxygenLabel.text = "♥︎%s♥︎\nOxygen: %d%%" % [name,oxygen]
+			oxygenLabel.text = "[<3] %s [<3]\nOxygen: %d%%" % [name,oxygen]
 		else:
 			oxygenLabel.text = "%s\nOxygen: %d%%" % [name,oxygen]
 		
 	
 	if(is_multiplayer_authority()):
-		update_network_state.rpc(moveVelocity, position, oxygen, victory)
+		update_network_state.rpc(moveVelocity, position, oxygen, survived)
 	elif(position.distance_squared_to(networkPosition) > 0.1):
 		position += (networkPosition - position) * delta * networkCorrectionSpeed
 	
@@ -104,7 +112,7 @@ func pick_current_target():
 		
 	for area in overlaps:
 		if !(area.get_parent() is Player):
-			victory = true
+			survived = true
 			break
 			
 		var overlappingPlayer = area.get_parent() as Player
@@ -121,7 +129,7 @@ func update_network_state(newVelocity : Vector2, newPosition : Vector3, newOxyge
 	moveVelocity = newVelocity
 	networkPosition = newPosition
 	oxygen = newOxygen
-	victory = newVictory
+	survived = newVictory
 	
 @rpc("any_peer", "call_local")
 func set_masked_state(active : bool):
@@ -130,6 +138,12 @@ func set_masked_state(active : bool):
 @rpc("any_peer", "call_local")
 func set_crush_id(crush):
 	crushID = crush
+	
+func get_crush_player():
+	if(!crushID):
+		return
+	
+	return Network.players[crushID].node
 	
 func has_mask():
 	return diver.mask.visible
