@@ -2,7 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://xq4xpl28u8a0" path="res://UI/UITheme.tres" id="1_8saeu"]
 [ext_resource type="Texture2D" uid="uid://ds3qyt28ouqg5" path="res://UI/Tilesheets/Large tiles/Thin outline/tilemap.png" id="1_853f1"]
-[ext_resource type="Texture2D" uid="uid://blpcvgtgnnoau" path="res://UI/Tilesheets/Large tiles/Thick outline/tilemap.png" id="2_8saeu"]
+[ext_resource type="Texture2D" uid="uid://dvatgi5bx1roq" path="res://UI/Tilesheets/Small tiles/Thick outline/tilemap.png" id="3_8saeu"]
+[ext_resource type="FontFile" uid="uid://djtcka3amng2q" path="res://UI/Font/AQUATIC.ttf" id="4_ghw46"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ghw46"]
 texture = ExtResource("1_853f1")
@@ -104,10 +105,12 @@ texture_region_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_ghw46")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_853f1"]
+atlas = ExtResource("3_8saeu")
+region = Rect2(53, 53, 12, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8um5k"]
-atlas = ExtResource("2_8saeu")
-region = Rect2(66, 33, 32, 32)
+atlas = ExtResource("3_8saeu")
+region = Rect2(53, 53, 12, 12)
 
 [node name="MainMenu" type="Control" unique_id=667387124]
 layout_mode = 3
@@ -118,39 +121,93 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8saeu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=973249283]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1555548089]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = 46.0
-offset_right = -20.0
-offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=290125864]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=973249283]
 layout_mode = 2
-text = "Start"
-horizontal_alignment = 1
 
-[node name="TileMapLayer" type="TileMapLayer" parent="VBoxContainer" unique_id=842321764]
+[node name="TileMapLayer" type="TileMapLayer" parent="CenterContainer/VBoxContainer" unique_id=842321764]
 tile_set = SubResource("TileSet_df05h")
 
-[node name="Button" type="Button" parent="VBoxContainer" unique_id=809795461]
-custom_minimum_size = Vector2(0, 30)
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=809795461]
 layout_mode = 2
+text = "Start"
 icon = SubResource("AtlasTexture_853f1")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/Button" unique_id=1891880113]
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/VBoxContainer/Button" unique_id=1891880113]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("AtlasTexture_8um5k")
-region_rect = Rect2(0, 0, 32, 32)
-patch_margin_left = 14
-patch_margin_top = 14
-patch_margin_right = 14
-patch_margin_bottom = 14
+region_rect = Rect2(0, 0, 12, 12)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Button" unique_id=290125864]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_ghw46")
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1130476646]
+layout_mode = 2
+text = "
+"
+icon = SubResource("AtlasTexture_853f1")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/VBoxContainer/Button3" unique_id=2036501386]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_8um5k")
+region_rect = Rect2(0, 0, 12, 12)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/Button3" unique_id=1268859550]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_ghw46")
+text = "Exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
