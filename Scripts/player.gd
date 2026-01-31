@@ -8,6 +8,7 @@ extends Node3D
 
 @export_category("Gameplay Features")
 @export var maskNode : Node
+@export var detectionArea : Area3D
 @export var oxygenLabel : Label3D
 @export var oxygenDepletionRate = 5
 
@@ -17,6 +18,8 @@ var networkPosition : Vector3
 var mousePressed : bool = false
 
 var oxygen = 100.0
+
+var targetPlayer : Player
 
 func _process(delta):
 	if(is_multiplayer_authority()):
@@ -31,8 +34,18 @@ func _process(delta):
 			
 		moveVelocity += (targetVelocity - moveVelocity) * delta * acceleration
 		
-		if(!has_mask()):
-			oxygen -= oxygenDepletionRate * delta
+		if(has_mask()):
+			oxygen = clamp(oxygen + oxygenDepletionRate * delta, 0, 100)
+		else:
+			oxygen = clamp(oxygen - oxygenDepletionRate * delta, 0, 100)
+			
+		pick_current_target()
+		
+		if(targetPlayer && Input.is_action_just_pressed("interact")):
+			var masked = targetPlayer.has_mask()
+			if(has_mask() != masked):
+				set_masked_state.rpc(masked)
+				targetPlayer.set_masked_state.rpc(!masked)
 		
 	var velocity3d = Vector3(moveVelocity.x, -moveVelocity.y, 0) 
 	position += velocity3d * delta
@@ -46,12 +59,31 @@ func _process(delta):
 		position += (networkPosition - position) * delta * networkCorrectionSpeed
 	
 func _input(event):
+	if(!is_multiplayer_authority()):
+		return
+		
 	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		mousePressed = event.pressed
 	
 	#if event is InputEventMouseButton || event is InputEventMouseMotion:
 	#	mousePos = event.position
+	
+func pick_current_target():
+	var overlaps = detectionArea.get_overlapping_areas()
+		
+	var closestPlayer : Player
+	var closestDistance = 1000000
+		
+	for area in overlaps:
+		var overlappingPlayer = area.get_parent() as Player
+		var distanceToPlayer = position.distance_squared_to(overlappingPlayer.position)
+		
+		if (distanceToPlayer < closestDistance):
+			closestPlayer = overlappingPlayer
+			closestDistance = distanceToPlayer
+			
+	targetPlayer = closestPlayer
 	
 @rpc
 func update_network_state(newVelocity : Vector2, newPosition : Vector3, newOxygen):
