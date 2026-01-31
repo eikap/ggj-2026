@@ -48,6 +48,20 @@ shader_parameter/wave_scale = 2.0
 shader_parameter/water_color = Color(0, 0.6651851, 0.7977378, 1)
 shader_parameter/absorption_strength = 0.4
 
+[sub_resource type="Environment" id="Environment_s47ow"]
+glow_intensity = 0.0
+glow_bloom = 0.62
+glow_hdr_threshold = 4.0
+glow_hdr_scale = 4.0
+glow_hdr_luminance_cap = 185.6
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.024851736, 0.21418303, 0.5875931, 1)
+fog_light_energy = 0.71
+fog_density = 1.0
+fog_height = 156.54
+volumetric_fog_enabled = true
+
 [node name="3DNode" type="Node3D" unique_id=2126700684]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=559224702]
@@ -153,3 +167,6 @@ text = "Join"
 layout_mode = 2
 text = "Back
 "
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=292969139]
+environment = SubResource("Environment_s47ow")
