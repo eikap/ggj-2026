@@ -12,9 +12,10 @@ material = SubResource("StandardMaterial3D_rpqav")
 radius = 0.25
 height = 0.5
 
-[node name="Player" type="Node3D" unique_id=1914127609 node_paths=PackedStringArray("maskNode")]
+[node name="Player" type="Node3D" unique_id=1914127609 node_paths=PackedStringArray("maskNode", "oxygenLabel")]
 script = ExtResource("1_rpqav")
 maskNode = NodePath("Mask")
+oxygenLabel = NodePath("Label3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1426452276]
 mesh = SubResource("BoxMesh_qbkls")
@@ -23,3 +24,7 @@ mesh = SubResource("BoxMesh_qbkls")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.542644)
 visible = false
 mesh = SubResource("CapsuleMesh_kyqiw")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1578833551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8320075, 0)
+text = "Oxygen: 100%"

@@ -6,8 +6,10 @@ extends Node3D
 @export var acceleration = 3
 @export var networkCorrectionSpeed = 1
 
-@export_category("Components")
+@export_category("Gameplay Features")
 @export var maskNode : Node
+@export var oxygenLabel : Label3D
+@export var oxygenDepletionRate = 5
 
 
 var moveVelocity : Vector2
@@ -29,11 +31,17 @@ func _process(delta):
 			
 		moveVelocity += (targetVelocity - moveVelocity) * delta * acceleration
 		
+		if(!has_mask()):
+			oxygen -= oxygenDepletionRate * delta
+		
 	var velocity3d = Vector3(moveVelocity.x, -moveVelocity.y, 0) 
 	position += velocity3d * delta
 	
+	if(oxygenLabel):
+		oxygenLabel.text = "Oxygen: %d%%" % oxygen
+	
 	if(is_multiplayer_authority()):
-		update_network_state.rpc(moveVelocity, position)
+		update_network_state.rpc(moveVelocity, position, oxygen)
 	elif(position.distance_squared_to(networkPosition) > 0.1):
 		position += (networkPosition - position) * delta * networkCorrectionSpeed
 	
@@ -46,10 +54,14 @@ func _input(event):
 	#	mousePos = event.position
 	
 @rpc
-func update_network_state(newVelocity : Vector2, newPosition : Vector3):
+func update_network_state(newVelocity : Vector2, newPosition : Vector3, newOxygen):
 	moveVelocity = newVelocity
 	networkPosition = newPosition
+	oxygen = newOxygen
 	
 @rpc("any_peer", "call_local")
 func set_masked_state(active : bool):
 	maskNode.set_visible(active)
+	
+func has_mask():
+	return maskNode.visible
