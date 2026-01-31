@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dci4det7v1oj"]
+
+[resource]
+albedo_color = Color(0.5568628, 0.27058825, 1, 1)
+stencil_flags = 2

@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://ms2s5afrrh0v"]
+
+[ext_resource type="PackedScene" uid="uid://ygca4ihdpyqs" path="res://Assets/Player/diver_player.fbx" id="1_5a7mr"]
+[ext_resource type="Material" uid="uid://7bl6hsng1uln" path="res://Assets/Player/body_material_orange.tres" id="2_5a7mr"]
+[ext_resource type="Material" uid="uid://b245ekkaf6icf" path="res://Assets/Player/body_material_yellow.tres" id="3_p5nbs"]
+[ext_resource type="Material" uid="uid://mwj3c7ouinot" path="res://Assets/Player/arm_material.tres" id="4_e6e0j"]
+
+[sub_resource type="Animation" id="Animation_8peud"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("l_leg:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.29670596, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_baur6"]
+resource_name = "leg move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("r_leg:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-7.5497894e-08, 0, 0), Vector3(0.29670596, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8peud"]
+_data = {
+&"RESET": SubResource("Animation_8peud"),
+&"leg move": SubResource("Animation_baur6")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxpnx"]
+
+[node name="diver" unique_id=297256398 instance=ExtResource("1_5a7mr")]
+
+[node name="Light" parent="." index="0" unique_id=2109334356]
+visible = false
+
+[node name="Camera" parent="." index="1" unique_id=785482569]
+visible = false
+
+[node name="body" parent="." index="2" unique_id=74950057]
+material_override = ExtResource("2_5a7mr")
+surface_material_override/0 = ExtResource("3_p5nbs")
+
+[node name="arms" parent="." index="3" unique_id=1108133026]
+material_override = ExtResource("4_e6e0j")
+surface_material_override/0 = ExtResource("3_p5nbs")
+
+[node name="r_leg" parent="." index="4" unique_id=707106354]
+transform = Transform3D(1, 0, 0, 0, 0.9800847, -0.1985797, 0, 0.1985797, 0.9800847, -0.17000507, 1.0939391, 0.03338457)
+material_override = ExtResource("2_5a7mr")
+
+[node name="leganim" type="AnimationPlayer" parent="r_leg" index="0" unique_id=1134525821]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_8peud")
+
+[node name="l_leg" parent="." index="5" unique_id=143885794]
+transform = Transform3D(1, 0, 0, 0, 0.9563047, -0.29237166, 0, 0.29237166, 0.9563047, 0.16762425, 1.0793327, 0.04141904)
+material_override = ExtResource("2_5a7mr")
+
+[node name="leganim" type="AnimationPlayer" parent="l_leg" index="0" unique_id=965550042]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_8peud")
+
+[node name="googles" parent="." index="6" unique_id=1623008435]
+material_override = ExtResource("4_e6e0j")
+surface_material_override/0 = SubResource("StandardMaterial3D_vxpnx")

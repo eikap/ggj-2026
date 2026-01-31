@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ndj40amwse4l" path="res://Assets/Player/diver_player_green.tscn" id="4_8eewn"]
 [ext_resource type="Texture2D" uid="uid://50mucm3l0a4t" path="res://FelixTest/bubble.png" id="4_kpldy"]
 [ext_resource type="PackedScene" uid="uid://cjhi4ebxs1wu7" path="res://Assets/Player/diver_player_red.tscn" id="5_kcq1m"]
+[ext_resource type="PackedScene" uid="uid://ms2s5afrrh0v" path="res://Assets/Player/diver_player_orange.tscn" id="6_kcq1m"]
+[ext_resource type="PackedScene" uid="uid://cjmwm8yvub0tu" path="res://Assets/Player/diver_player_purple.tscn" id="7_s47ow"]
 
 [sub_resource type="Gradient" id="Gradient_onk7a"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -67,6 +69,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.099176, 4.6294146, -5)
 
 [node name="diver4" parent="." unique_id=889730542 instance=ExtResource("5_kcq1m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8091868, 7.943354, -5)
+
+[node name="diver5" parent="." unique_id=975916640 instance=ExtResource("6_kcq1m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.913759, 8.888399, -5)
+
+[node name="diver6" parent="." unique_id=1907943120 instance=ExtResource("7_s47ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1733093, 7.2854404, -5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1995621811]
 transform = Transform3D(0.8660254, -0.3535534, 0.3535534, 0, 0.7071068, 0.7071068, -0.5, -0.61237246, 0.61237246, 0, 0, 0)
