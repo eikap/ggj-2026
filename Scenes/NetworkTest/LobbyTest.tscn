@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dw0qsaon6uuyf" path="res://Scripts/lobby.gd" id="1_60hj3"]
 
-[node name="LobbyTest" type="Node3D" unique_id=1866654882 node_paths=PackedStringArray("statusText", "startButton", "ipInput", "playerNameInput")]
+[node name="LobbyTest" type="Node3D" unique_id=1866654882 node_paths=PackedStringArray("statusText", "joinButton", "startButton", "ipInput", "playerNameInput")]
 script = ExtResource("1_60hj3")
 statusText = NodePath("VBoxContainer/Label")
+joinButton = NodePath("VBoxContainer/Button2")
 startButton = NodePath("VBoxContainer/StartButton")
 ipInput = NodePath("VBoxContainer/IP")
 playerNameInput = NodePath("VBoxContainer/PlayerName")

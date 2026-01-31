@@ -2,6 +2,7 @@ extends Node3D
 
 @export var statusText : Label
 
+@export var joinButton : Button
 @export var startButton : Button
 
 @export var ipInput : TextEdit
@@ -30,6 +31,7 @@ func on_host_clicked():
 		
 	print("Success!")
 	startButton.set_visible(true)
+	joinButton.set_visible(false)
 	
 func on_join_clicked():
 	statusText.text = "Joining..."
@@ -42,6 +44,7 @@ func on_join_clicked():
 		return
 		
 	startButton.set_visible(true)
+	joinButton.set_visible(false)
 	
 func on_start_clicked():
 	Network.load_game.rpc(gameScene)

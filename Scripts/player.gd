@@ -1,12 +1,20 @@
+class_name Player
 extends Node3D
 
+@export_category("Controls")
 @export var maxSpeed = 2
 @export var acceleration = 3
 @export var networkCorrectionSpeed = 1
 
+@export_category("Components")
+@export var maskNode : Node
+
+
 var moveVelocity : Vector2
 var networkPosition : Vector3
 var mousePressed : bool = false
+
+var oxygen = 100.0
 
 func _process(delta):
 	if(is_multiplayer_authority()):
@@ -42,3 +50,6 @@ func update_network_state(newVelocity : Vector2, newPosition : Vector3):
 	moveVelocity = newVelocity
 	networkPosition = newPosition
 	
+@rpc("any_peer", "call_local")
+func set_masked_state(active : bool):
+	maskNode.set_visible(active)

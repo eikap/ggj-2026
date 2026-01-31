@@ -4,8 +4,22 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_qbkls"]
 
-[node name="Player" type="Node3D" unique_id=1914127609]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rpqav"]
+albedo_color = Color(0.27399322, 0.5870512, 0.32595006, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kyqiw"]
+material = SubResource("StandardMaterial3D_rpqav")
+radius = 0.25
+height = 0.5
+
+[node name="Player" type="Node3D" unique_id=1914127609 node_paths=PackedStringArray("maskNode")]
 script = ExtResource("1_rpqav")
+maskNode = NodePath("Mask")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1426452276]
 mesh = SubResource("BoxMesh_qbkls")
+
+[node name="Mask" type="MeshInstance3D" parent="." unique_id=225926264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.542644)
+visible = false
+mesh = SubResource("CapsuleMesh_kyqiw")

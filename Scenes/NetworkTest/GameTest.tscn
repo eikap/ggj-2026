@@ -7,5 +7,9 @@
 script = ExtResource("1_u30vs")
 playerPrefab = ExtResource("2_4n824")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1235230517]
+transform = Transform3D(-0.8660254, -0.43301278, 0.24999999, 0.4727395, -0.5462673, 0.69145465, -0.16284184, 0.71700215, 0.6777835, 0, 0, 0)
+shadow_enabled = true
+
 [node name="Camera3D" type="Camera3D" parent="." unique_id=227937220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.684964)
