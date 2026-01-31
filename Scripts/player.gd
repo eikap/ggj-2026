@@ -18,10 +18,17 @@ var networkPosition : Vector3
 var mousePressed : bool = false
 
 var oxygen = 100.0
+var victory = false
 
 var targetPlayer : Player
 
 func _process(delta):
+	if(victory):
+		if(oxygenLabel):
+			oxygenLabel.text = "Won!"
+			
+		return
+	
 	if(oxygen <= 0):
 		if(oxygenLabel):
 			oxygenLabel.text = "Dead!"
@@ -60,7 +67,7 @@ func _process(delta):
 		oxygenLabel.text = "Oxygen: %d%%" % oxygen
 	
 	if(is_multiplayer_authority()):
-		update_network_state.rpc(moveVelocity, position, oxygen)
+		update_network_state.rpc(moveVelocity, position, oxygen, victory)
 	elif(position.distance_squared_to(networkPosition) > 0.1):
 		position += (networkPosition - position) * delta * networkCorrectionSpeed
 	
@@ -82,6 +89,10 @@ func pick_current_target():
 	var closestDistance = 1000000
 		
 	for area in overlaps:
+		if !(area.get_parent() is Player):
+			victory = true
+			break
+			
 		var overlappingPlayer = area.get_parent() as Player
 		var distanceToPlayer = position.distance_squared_to(overlappingPlayer.position)
 		
@@ -92,10 +103,11 @@ func pick_current_target():
 	targetPlayer = closestPlayer
 	
 @rpc
-func update_network_state(newVelocity : Vector2, newPosition : Vector3, newOxygen):
+func update_network_state(newVelocity : Vector2, newPosition : Vector3, newOxygen, newVictory):
 	moveVelocity = newVelocity
 	networkPosition = newPosition
 	oxygen = newOxygen
+	victory = newVictory
 	
 @rpc("any_peer", "call_local")
 func set_masked_state(active : bool):

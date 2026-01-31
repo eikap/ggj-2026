@@ -4,6 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://beo3s3agr3nqi" path="res://Scenes/Player.tscn" id="2_4n824"]
 [ext_resource type="Script" uid="uid://56ehandt1ji2" path="res://Scripts/camera.gd" id="3_nm856"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nm856"]
+size = Vector3(26.302002, 1, 10.48999)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nm856"]
+
 [node name="Game" type="Node3D" unique_id=1621413269]
 script = ExtResource("1_u30vs")
 playerPrefab = ExtResource("2_4n824")
@@ -15,3 +20,14 @@ shadow_enabled = true
 [node name="Camera3D" type="Camera3D" parent="." unique_id=227937220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.684964)
 script = ExtResource("3_nm856")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1352431598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.208824, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=898324054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6776123, 0, -0.86950684)
+shape = SubResource("BoxShape3D_nm856")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=529401730]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_nm856")
