@@ -53,7 +53,11 @@ func _process(delta):
 			var mousePos = get_viewport().get_mouse_position()
 			
 			var direction = (mousePos - screenSpacePos).normalized()
-			targetVelocity = direction * maxSpeed
+			
+			var speedMultiplier = 1
+			if(has_mask()):
+				speedMultiplier = 0.9
+			targetVelocity = direction * maxSpeed * speedMultiplier
 			
 		moveVelocity += (targetVelocity - moveVelocity) * delta * acceleration
 		
@@ -106,10 +110,10 @@ func _input(event):
 	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		mousePressed = event.pressed
-		mouseDoubleClick |= event.double_click
+		mouseDoubleClick = mouseDoubleClick || event.double_click
 		
 	if event is InputEventScreenTouch:
-		mouseDoubleClick |= event.double_tap
+		mouseDoubleClick = mouseDoubleClick || event.double_tap
 	
 	#if event is InputEventMouseButton || event is InputEventMouseMotion:
 	#	mousePos = event.position
