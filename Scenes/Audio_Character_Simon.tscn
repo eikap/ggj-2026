@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cooc7kxige2fe"]
+
+[ext_resource type="Script" uid="uid://caclm1kldtm51" path="res://Scripts/audio_character_Logic.gd" id="1_6cja6"]
+[ext_resource type="AudioStream" uid="uid://nuysp474rr8l" path="res://Audio/VOX/GGJ_UnderWaterSurvivalLove_VOX_Drowning_Simon.mp3" id="2_6a8at"]
+[ext_resource type="AudioStream" uid="uid://bls3rbk5shgfw" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Bubbles_01.mp3" id="3_2rsn1"]
+
+[node name="AudioCharacterSimon" type="AudioStreamPlayer2D" unique_id=320430587]
+script = ExtResource("1_6cja6")
+
+[node name="Oxygen level test" type="VSlider" parent="." unique_id=1456535395]
+visible = false
+offset_left = 105.0
+offset_top = 89.0
+offset_right = 121.0
+offset_bottom = 282.0
+value = 100.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Audio_Voice" type="AudioStreamPlayer2D" parent="." unique_id=1257038657]
+stream = ExtResource("2_6a8at")
+bus = &"VOX"
+parameters/looping = true
+
+[node name="Audio_Bubbles" type="AudioStreamPlayer2D" parent="." unique_id=652703759]
+stream = ExtResource("3_2rsn1")
+bus = &"SFX"
+parameters/looping = true
