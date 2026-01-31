@@ -2,8 +2,12 @@ extends Node3D
 
 @export var statusText : Label
 
+@export var startButton : Button
+
 @export var ipInput : TextEdit
 @export var playerNameInput : TextEdit
+
+@export_file_path("*.tscn") var gameScene : String
 
 func _enter_tree():
 	Network.player_connected.connect(player_connected)
@@ -25,7 +29,7 @@ func on_host_clicked():
 		return
 		
 	print("Success!")
-	return
+	startButton.set_visible(true)
 	
 func on_join_clicked():
 	statusText.text = "Joining..."
@@ -35,7 +39,12 @@ func on_join_clicked():
 	
 	if(result != OK):
 		statusText.text = "Failed!"
+		return
 		
+	startButton.set_visible(true)
+	
+func on_start_clicked():
+	Network.load_game.rpc(gameScene)
 	return
 
 func player_connected(_peer_id, player_info):
