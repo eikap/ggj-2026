@@ -106,7 +106,10 @@ func _input(event):
 	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		mousePressed = event.pressed
-		mouseDoubleClick = event.double_click
+		mouseDoubleClick |= event.double_click
+		
+	if event is InputEventScreenTouch:
+		mouseDoubleClick |= event.double_tap
 	
 	#if event is InputEventMouseButton || event is InputEventMouseMotion:
 	#	mousePos = event.position
