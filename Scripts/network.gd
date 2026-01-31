@@ -8,7 +8,7 @@ signal player_disconnected(peer_id)
 signal server_disconnected
 
 const PORT = 7001
-const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
+const DEFAULT_SERVER_IP = "wss://ggj26-ws.nas.danieljbradshaw.co.uk" # IPv4 localhost
 const MAX_CONNECTIONS = 20
 
 # This will contain player info for every player,
@@ -34,10 +34,11 @@ func _ready():
 
 
 func join_game(address = ""):
-	if address.is_empty():
+	if OS.has_feature("production"):
 		address = DEFAULT_SERVER_IP
+	
 	var peer = WebSocketMultiplayerPeer.new()
-	var error = peer.create_client(address+":"+ str(PORT))
+	var error = peer.create_client(address)
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
