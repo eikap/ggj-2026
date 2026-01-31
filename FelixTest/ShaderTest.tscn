@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://kxb573oc4rmo"]
+
+[ext_resource type="Shader" uid="uid://eu5lxxugrumk" path="res://FelixTest/Underwater.gdshader" id="1_vi6rh"]
+[ext_resource type="Texture2D" uid="uid://bay3bscqmo44i" path="res://FelixTest/new_noise_texture_2d.tres" id="2_5xmn5"]
+[ext_resource type="ArrayMesh" uid="uid://otguk2hq7oe1" path="res://FelixTest/level.obj" id="3_k4i15"]
+[ext_resource type="Texture2D" uid="uid://50mucm3l0a4t" path="res://FelixTest/bubble.png" id="4_kpldy"]
+
+[sub_resource type="Gradient" id="Gradient_onk7a"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uvt45"]
+gradient = SubResource("Gradient_onk7a")
+
+[sub_resource type="Curve" id="Curve_2mva7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8eewn"]
+curve = SubResource("Curve_2mva7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kcq1m"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(600, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, -20, 0)
+scale_min = 0.02
+scale_max = 0.04
+scale_curve = SubResource("CurveTexture_8eewn")
+color_ramp = SubResource("GradientTexture1D_uvt45")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5xmn5"]
+shader = ExtResource("1_vi6rh")
+shader_parameter/noise_tex = ExtResource("2_5xmn5")
+shader_parameter/distortion_strength = 0.015
+shader_parameter/wave_speed = 0.4
+shader_parameter/wave_scale = 5.0
+shader_parameter/water_color = Color(0, 0.6651851, 0.7977378, 1)
+shader_parameter/absorption_strength = 0.4
+
+[node name="3DNode" type="Node3D" unique_id=2126700684]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=559224702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.6301413, 0)
+current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=372282986]
+mesh = ExtResource("3_k4i15")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1995621811]
+transform = Transform3D(0.8660254, -0.3535534, 0.3535534, 0, 0.7071068, 0.7071068, -0.5, -0.61237246, 0.61237246, 0, 0, 0)
+
+[node name="Bubbles" type="GPUParticles2D" parent="." unique_id=1121410132]
+position = Vector2(548, 651)
+amount = 500
+texture = ExtResource("4_kpldy")
+lifetime = 20.0
+preprocess = 1.0
+process_material = SubResource("ParticleProcessMaterial_kcq1m")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1861124551]
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer" unique_id=1669460682]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=33011108]
+material = SubResource("ShaderMaterial_5xmn5")
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=1567623227]
+custom_minimum_size = Vector2(19.47, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer" unique_id=1565532509]
+visible = false
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=653147638]
+layout_mode = 2
+text = "Start"
+
+[node name="Button3" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=224404599]
+layout_mode = 2
+text = "Exit
+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/CenterContainer" unique_id=788134208]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/CenterContainer/VBoxContainer2" unique_id=351148798]
+layout_mode = 2
+placeholder_text = "Enter Name"
+
+[node name="Button" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer2" unique_id=523675643]
+layout_mode = 2
+text = "Join"
+
+[node name="Button3" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer2" unique_id=974268023]
+layout_mode = 2
+text = "Back
+"
