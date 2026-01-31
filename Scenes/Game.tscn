@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://5umi5mq2t7ma"]
+
+[ext_resource type="Script" uid="uid://cl72cj1xoh8wd" path="res://Scenes/NetworkTest/game.gd" id="1_u30vs"]
+[ext_resource type="PackedScene" uid="uid://beo3s3agr3nqi" path="res://Scenes/Player.tscn" id="2_4n824"]
+[ext_resource type="Script" uid="uid://56ehandt1ji2" path="res://Scripts/camera.gd" id="3_nm856"]
+[ext_resource type="Texture2D" uid="uid://50mucm3l0a4t" path="res://FelixTest/bubble.png" id="4_bf53h"]
+[ext_resource type="Shader" uid="uid://eu5lxxugrumk" path="res://FelixTest/Underwater.gdshader" id="5_71axn"]
+[ext_resource type="Texture2D" uid="uid://bay3bscqmo44i" path="res://FelixTest/new_noise_texture_2d.tres" id="6_dahhg"]
+[ext_resource type="PackedScene" uid="uid://convxv2ryubc4" path="res://Scenes/OxygenBars.tscn" id="7_fgofq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nm856"]
+size = Vector3(26.302002, 1, 10.48999)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nm856"]
+
+[sub_resource type="Gradient" id="Gradient_k01v7"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uvt45"]
+gradient = SubResource("Gradient_k01v7")
+
+[sub_resource type="Curve" id="Curve_qe28u"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8eewn"]
+curve = SubResource("Curve_qe28u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5nagw"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(600, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, -20, 0)
+scale_min = 0.02
+scale_max = 0.04
+scale_curve = SubResource("CurveTexture_8eewn")
+color_ramp = SubResource("GradientTexture1D_uvt45")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjutw"]
+shader = ExtResource("5_71axn")
+shader_parameter/noise_tex = ExtResource("6_dahhg")
+shader_parameter/distortion_strength = 0.005
+shader_parameter/wave_speed = 0.2
+shader_parameter/wave_scale = 2.0
+shader_parameter/water_color = Color(0, 0.6651851, 0.7977378, 1)
+shader_parameter/absorption_strength = 0.4
+
+[node name="Game" type="Node3D" unique_id=1621413269]
+script = ExtResource("1_u30vs")
+playerPrefab = ExtResource("2_4n824")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1235230517]
+transform = Transform3D(-0.8660254, -0.43301278, 0.24999999, 0.4727395, -0.5462673, 0.69145465, -0.16284184, 0.71700215, 0.6777835, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=227937220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.684964)
+script = ExtResource("3_nm856")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1352431598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.208824, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=898324054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6776123, 0, -0.86950684)
+shape = SubResource("BoxShape3D_nm856")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=529401730]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_nm856")
+
+[node name="Bubbles" type="GPUParticles2D" parent="." unique_id=559252368]
+position = Vector2(548, 651)
+amount = 500
+texture = ExtResource("4_bf53h")
+lifetime = 20.0
+preprocess = 1.0
+process_material = SubResource("ParticleProcessMaterial_5nagw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=391560658]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=613125698]
+material = SubResource("ShaderMaterial_wjutw")
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer2" parent="." unique_id=1113027098 instance=ExtResource("7_fgofq")]
