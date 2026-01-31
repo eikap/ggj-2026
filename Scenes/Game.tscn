@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bay3bscqmo44i" path="res://FelixTest/new_noise_texture_2d.tres" id="6_dahhg"]
 [ext_resource type="PackedScene" uid="uid://dafoj32escdyx" path="res://Scenes/Audio_MusicPlayer.tscn" id="7_2irst"]
 [ext_resource type="PackedScene" uid="uid://convxv2ryubc4" path="res://Scenes/OxygenBars.tscn" id="7_fgofq"]
+[ext_resource type="ArrayMesh" uid="uid://otguk2hq7oe1" path="res://FelixTest/level.obj" id="9_bf53h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nm856"]
 size = Vector3(26.302002, 1, 10.48999)
@@ -51,20 +52,30 @@ shader_parameter/wave_scale = 2.0
 shader_parameter/water_color = Color(0, 0.6651851, 0.7977378, 1)
 shader_parameter/absorption_strength = 0.4
 
+[sub_resource type="Environment" id="Environment_bf53h"]
+glow_intensity = 0.0
+glow_bloom = 0.62
+glow_hdr_threshold = 4.0
+glow_hdr_scale = 4.0
+glow_hdr_luminance_cap = 185.6
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.024851736, 0.21418303, 0.5875931, 1)
+fog_light_energy = 0.71
+fog_density = 1.0
+fog_height = 156.54
+volumetric_fog_enabled = true
+
 [node name="Game" type="Node3D" unique_id=1621413269]
 script = ExtResource("1_u30vs")
 playerPrefab = ExtResource("2_4n824")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1235230517]
-transform = Transform3D(-0.8660254, -0.43301278, 0.24999999, 0.4727395, -0.5462673, 0.69145465, -0.16284184, 0.71700215, 0.6777835, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=227937220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.684964)
 script = ExtResource("3_nm856")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1352431598]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.208824, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.691135, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=898324054]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6776123, 0, -0.86950684)
@@ -100,3 +111,13 @@ metadata/_edit_use_anchors_ = true
 [node name="CanvasLayer2" parent="." unique_id=1113027098 instance=ExtResource("7_fgofq")]
 
 [node name="Audio_MusicPlayer" parent="." unique_id=230560115 instance=ExtResource("7_2irst")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=222265727]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.13454056, -5.7416935, 0.01203537)
+mesh = ExtResource("9_bf53h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=865134826]
+transform = Transform3D(0.8660254, -0.3535534, 0.3535534, 0, 0.7071068, 0.7071068, -0.5, -0.61237246, 0.61237246, 0, 14.812359, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1164639965]
+environment = SubResource("Environment_bf53h")

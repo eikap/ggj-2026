@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://bay3bscqmo44i" path="res://FelixTest/new_noise_texture_2d.tres" id="2_5xmn5"]
 [ext_resource type="PackedScene" uid="uid://b2ut7aqnekc43" path="res://Assets/Player/diver_player.tscn" id="2_onk7a"]
 [ext_resource type="ArrayMesh" uid="uid://otguk2hq7oe1" path="res://FelixTest/level.obj" id="3_k4i15"]
-[ext_resource type="PackedScene" uid="uid://o8qdplpj7rlf" path="res://Assets/Player/diver_player_cyan.tscn" id="3_uvt45"]
-[ext_resource type="PackedScene" uid="uid://ndj40amwse4l" path="res://Assets/Player/diver_player_green.tscn" id="4_8eewn"]
+[ext_resource type="PackedScene" path="res://Assets/Player/diver_player_cyan.tscn" id="3_uvt45"]
+[ext_resource type="PackedScene" path="res://Assets/Player/diver_player_green.tscn" id="4_8eewn"]
 [ext_resource type="Texture2D" uid="uid://50mucm3l0a4t" path="res://FelixTest/bubble.png" id="4_kpldy"]
-[ext_resource type="PackedScene" uid="uid://cjhi4ebxs1wu7" path="res://Assets/Player/diver_player_red.tscn" id="5_kcq1m"]
-[ext_resource type="PackedScene" uid="uid://ms2s5afrrh0v" path="res://Assets/Player/diver_player_orange.tscn" id="6_kcq1m"]
-[ext_resource type="PackedScene" uid="uid://cjmwm8yvub0tu" path="res://Assets/Player/diver_player_purple.tscn" id="7_s47ow"]
+[ext_resource type="PackedScene" path="res://Assets/Player/diver_player_red.tscn" id="5_kcq1m"]
+[ext_resource type="PackedScene" path="res://Assets/Player/diver_player_orange.tscn" id="6_kcq1m"]
+[ext_resource type="PackedScene" path="res://Assets/Player/diver_player_purple.tscn" id="7_s47ow"]
 
 [sub_resource type="Gradient" id="Gradient_onk7a"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
