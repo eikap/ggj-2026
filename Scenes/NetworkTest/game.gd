@@ -1,6 +1,14 @@
 extends Node3D # Or Node2D.
 
+@export var playerPrefab : PackedScene
 
+func _enter_tree():
+	for playerID in Network.players:
+		var player = playerPrefab.instantiate();
+		player.set_name("Player"+str(playerID))
+		player.owningPlayer = playerID
+		player.set_multiplayer_authority(playerID)
+		add_child(player)
 
 func _ready():
 	# Preconfigure game.

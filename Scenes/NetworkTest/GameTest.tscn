@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://dvlfwnimqn5oe"]
 
 [ext_resource type="Script" uid="uid://cl72cj1xoh8wd" path="res://Scenes/NetworkTest/game.gd" id="1_u30vs"]
+[ext_resource type="PackedScene" uid="uid://beo3s3agr3nqi" path="res://Scenes/Player.tscn" id="2_4n824"]
 
 [node name="Game" type="Node3D" unique_id=1621413269]
 script = ExtResource("1_u30vs")
+playerPrefab = ExtResource("2_4n824")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=227937220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.684964)
