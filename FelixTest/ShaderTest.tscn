@@ -38,8 +38,8 @@ color_ramp = SubResource("GradientTexture1D_uvt45")
 shader = ExtResource("1_vi6rh")
 shader_parameter/noise_tex = ExtResource("2_5xmn5")
 shader_parameter/distortion_strength = 0.005
-shader_parameter/wave_speed = 0.4
-shader_parameter/wave_scale = 5.0
+shader_parameter/wave_speed = 0.2
+shader_parameter/wave_scale = 2.0
 shader_parameter/water_color = Color(0, 0.6651851, 0.7977378, 1)
 shader_parameter/absorption_strength = 0.4
 
