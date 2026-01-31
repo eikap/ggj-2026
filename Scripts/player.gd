@@ -21,6 +21,7 @@ var oxygen = 100.0
 var victory = false
 
 var targetPlayer : Player
+var crushID : int
 
 func _process(delta):
 	if(victory):
@@ -70,7 +71,13 @@ func _process(delta):
 		#rotation = rotation.slerp(Vector3(0, 0, targetRotation), delta * weight * rotationSnappiness)
 	
 	if(oxygenLabel):
-		oxygenLabel.text = "%s\nOxygen: %d%%" % [Network.players[get_multiplayer_authority()].name,oxygen]
+		var localPlayer : Player = Network.get_local_player_node()
+		var name = Network.players[get_multiplayer_authority()].name
+		
+		if(localPlayer && localPlayer.crushID == get_multiplayer_authority()):
+			oxygenLabel.text = "♥︎%s♥︎\nOxygen: %d%%" % [name,oxygen]
+		else:
+			oxygenLabel.text = "%s\nOxygen: %d%%" % [name,oxygen]
 		
 	
 	if(is_multiplayer_authority()):
@@ -119,6 +126,10 @@ func update_network_state(newVelocity : Vector2, newPosition : Vector3, newOxyge
 @rpc("any_peer", "call_local")
 func set_masked_state(active : bool):
 	diver.mask.set_visible(active)
+	
+@rpc("any_peer", "call_local")
+func set_crush_id(crush):
+	crushID = crush
 	
 func has_mask():
 	return diver.mask.visible

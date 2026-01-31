@@ -14,4 +14,9 @@ func _process(delta):
 		
 	localOxygen.value = localPlayer.oxygen
 	
+	var crush : Player = Network.players[localPlayer.crushID].node
+	if(!crush):
+		return
+	
+	crushOxygen.value = crush.oxygen
 	

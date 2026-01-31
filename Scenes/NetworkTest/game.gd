@@ -30,5 +30,11 @@ func start_game():
 		
 		player.set_masked_state.rpc(true)
 	
+	for i in range(0, numPlayers):
+		var playerID = Network.players.keys()[i]
+		var player : Player = Network.players[playerID].node
+		
+		player.set_crush_id.rpc(Network.players.keys()[(i + 1) % numPlayers])
+	
 	# All peers are ready to receive RPCs in this scene.
 	pass

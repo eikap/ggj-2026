@@ -115,3 +115,9 @@ func _on_server_disconnected():
 	remove_multiplayer_peer()
 	players.clear()
 	server_disconnected.emit()
+	
+func get_local_player_node():
+	if OS.has_feature("dedicated_server"):
+		return null
+	
+	return Network.players[multiplayer.get_unique_id()].node
