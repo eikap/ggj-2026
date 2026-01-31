@@ -1,9 +1,20 @@
 [gd_scene format=3 uid="uid://3lrhjlcfejye"]
 
 [sub_resource type="Environment" id="Environment_752sw"]
+glow_intensity = 0.0
+glow_bloom = 0.62
+glow_hdr_threshold = 4.0
+glow_hdr_scale = 4.0
+glow_hdr_luminance_cap = 185.6
 fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.024851736, 0.21418303, 0.5875931, 1)
+fog_light_energy = 0.71
+fog_density = 1.0
+fog_height = 156.54
+volumetric_fog_enabled = true
 
 [node name="Environment" type="Node3D" unique_id=315069916]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1656690295]
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="." unique_id=1167696074]
 environment = SubResource("Environment_752sw")
