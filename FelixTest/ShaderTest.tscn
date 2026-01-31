@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://eu5lxxugrumk" path="res://FelixTest/Underwater.gdshader" id="1_vi6rh"]
 [ext_resource type="Texture2D" uid="uid://bay3bscqmo44i" path="res://FelixTest/new_noise_texture_2d.tres" id="2_5xmn5"]
+[ext_resource type="PackedScene" uid="uid://b2ut7aqnekc43" path="res://Assets/Player/diver_player.tscn" id="2_onk7a"]
 [ext_resource type="ArrayMesh" uid="uid://otguk2hq7oe1" path="res://FelixTest/level.obj" id="3_k4i15"]
 [ext_resource type="Texture2D" uid="uid://50mucm3l0a4t" path="res://FelixTest/bubble.png" id="4_kpldy"]
 
@@ -36,7 +37,7 @@ color_ramp = SubResource("GradientTexture1D_uvt45")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5xmn5"]
 shader = ExtResource("1_vi6rh")
 shader_parameter/noise_tex = ExtResource("2_5xmn5")
-shader_parameter/distortion_strength = 0.015
+shader_parameter/distortion_strength = 0.005
 shader_parameter/wave_speed = 0.4
 shader_parameter/wave_scale = 5.0
 shader_parameter/water_color = Color(0, 0.6651851, 0.7977378, 1)
@@ -45,11 +46,15 @@ shader_parameter/absorption_strength = 0.4
 [node name="3DNode" type="Node3D" unique_id=2126700684]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=559224702]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.6301413, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.6301413, 5.5543365)
 current = true
+fov = 30.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=372282986]
 mesh = ExtResource("3_k4i15")
+
+[node name="diver" parent="." unique_id=297256398 instance=ExtResource("2_onk7a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.1004114, -5.0142345)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1995621811]
 transform = Transform3D(0.8660254, -0.3535534, 0.3535534, 0, 0.7071068, 0.7071068, -0.5, -0.61237246, 0.61237246, 0, 0, 0)
