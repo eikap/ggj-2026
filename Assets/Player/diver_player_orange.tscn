@@ -19,6 +19,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0.29670596, 0, 0), Vector3(0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("r_leg:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.51),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.29670596, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_baur6"]
 resource_name = "leg move"
@@ -36,7 +48,7 @@ tracks/0/keys = {
 "values": [Vector3(-7.5497894e-08, 0, 0), Vector3(0.29670596, 0, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8peud"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5a7mr"]
 _data = {
 &"RESET": SubResource("Animation_8peud"),
 &"leg move": SubResource("Animation_baur6")
@@ -61,20 +73,16 @@ material_override = ExtResource("4_e6e0j")
 surface_material_override/0 = ExtResource("3_p5nbs")
 
 [node name="r_leg" parent="." index="4" unique_id=707106354]
-transform = Transform3D(1, 0, 0, 0, 0.9800847, -0.1985797, 0, 0.1985797, 0.9800847, -0.17000507, 1.0939391, 0.03338457)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.17000507, 1.0939391, 0.03338457)
 material_override = ExtResource("2_5a7mr")
 
-[node name="leganim" type="AnimationPlayer" parent="r_leg" index="0" unique_id=1134525821]
+[node name="leganim" type="AnimationPlayer" parent="r_leg" index="0" unique_id=33269643]
 root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_8peud")
+libraries/ = SubResource("AnimationLibrary_5a7mr")
 
 [node name="l_leg" parent="." index="5" unique_id=143885794]
 transform = Transform3D(1, 0, 0, 0, 0.9563047, -0.29237166, 0, 0.29237166, 0.9563047, 0.16762425, 1.0793327, 0.04141904)
 material_override = ExtResource("2_5a7mr")
-
-[node name="leganim" type="AnimationPlayer" parent="l_leg" index="0" unique_id=965550042]
-root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_8peud")
 
 [node name="googles" parent="." index="6" unique_id=1623008435]
 material_override = ExtResource("4_e6e0j")
