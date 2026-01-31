@@ -1,9 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://xq4xpl28u8a0"]
 
-[ext_resource type="Texture2D" uid="uid://bnmdw6xts33p7" path="res://UI/Tiles/Large tiles/Thick outline/tile_0015.png" id="1_mudyb"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_cnlh1"]
-atlas = ExtResource("1_mudyb")
 
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
