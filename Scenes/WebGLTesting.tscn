@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c5sqtpf8kgs6d"]
+
+[ext_resource type="PackedScene" uid="uid://b48d0s3i83ree" path="res://Scenes/MainMenu.tscn" id="1_04ehx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_81hr8"]
+
+[node name="WebGlTesting" type="Node3D" unique_id=1028233788]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=357149213]
+mesh = SubResource("CapsuleMesh_81hr8")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=96648236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.9865308)
+
+[node name="MainMenu" parent="." unique_id=667387124 instance=ExtResource("1_04ehx")]
