@@ -75,7 +75,8 @@ transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_nm856")
 
 [node name="Bubbles" type="GPUParticles2D" parent="." unique_id=559252368]
-position = Vector2(548, 651)
+position = Vector2(120, 431.42)
+scale = Vector2(0.3, 0.3)
 amount = 500
 texture = ExtResource("4_bf53h")
 lifetime = 20.0

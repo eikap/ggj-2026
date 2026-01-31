@@ -4,6 +4,7 @@ extends Node3D
 @export_category("Controls")
 @export var maxSpeed = 2
 @export var acceleration = 3
+@export var rotationSnappiness = 3
 @export var networkCorrectionSpeed = 1
 
 @export_category("Gameplay Features")
@@ -11,7 +12,6 @@ extends Node3D
 @export var detectionArea : Area3D
 @export var oxygenLabel : Label3D
 @export var oxygenDepletionRate = 5
-
 
 var moveVelocity : Vector2
 var networkPosition : Vector3
@@ -62,6 +62,12 @@ func _process(delta):
 		
 	var velocity3d = Vector3(moveVelocity.x, -moveVelocity.y, 0) 
 	position += velocity3d * delta
+	
+	#var weight = velocity3d.length()
+	#if(weight > 0):
+	#	var targetRotation = Vector3.LEFT.angle_to(velocity3d)
+	#	rotation = Vector3(0, 0, targetRotation)
+		#rotation = rotation.slerp(Vector3(0, 0, targetRotation), delta * weight * rotationSnappiness)
 	
 	if(oxygenLabel):
 		oxygenLabel.text = "Oxygen: %d%%" % oxygen
