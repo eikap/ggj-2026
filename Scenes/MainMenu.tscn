@@ -121,6 +121,20 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8saeu")
 
+[node name="Title" type="Label" parent="." unique_id=1401671786]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.5
+offset_right = 62.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Place Holder"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1555548089]
 layout_mode = 1
 anchors_preset = 15
@@ -129,18 +143,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=973249283]
+[node name="Start Menu" type="VBoxContainer" parent="CenterContainer" unique_id=2049251672]
+visible = false
 layout_mode = 2
 
-[node name="TileMapLayer" type="TileMapLayer" parent="CenterContainer/VBoxContainer" unique_id=842321764]
+[node name="TileMapLayer" type="TileMapLayer" parent="CenterContainer/Start Menu" unique_id=808864482]
 tile_set = SubResource("TileSet_df05h")
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=809795461]
+[node name="Start" type="Button" parent="CenterContainer/Start Menu" unique_id=1779629343]
+custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
 text = "Start"
 icon = SubResource("AtlasTexture_853f1")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/VBoxContainer/Button" unique_id=1891880113]
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/Start Menu/Start" unique_id=1202473172]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -154,7 +170,7 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Button" unique_id=290125864]
+[node name="Label2" type="Label" parent="CenterContainer/Start Menu/Start" unique_id=1295308369]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -173,13 +189,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1130476646]
+[node name="Exit" type="Button" parent="CenterContainer/Start Menu" unique_id=1137124415]
+custom_minimum_size = Vector2(125, 30)
 layout_mode = 2
-text = "
-"
+text = "Exit"
 icon = SubResource("AtlasTexture_853f1")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/VBoxContainer/Button3" unique_id=2036501386]
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/Start Menu/Exit" unique_id=158885283]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -193,7 +209,7 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/Button3" unique_id=1268859550]
+[node name="Label2" type="Label" parent="CenterContainer/Start Menu/Exit" unique_id=1791776594]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -208,6 +224,61 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_ghw46")
 text = "Exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Join Menu" type="VBoxContainer" parent="CenterContainer" unique_id=1614474952]
+layout_mode = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="CenterContainer/Join Menu" unique_id=255610155]
+tile_set = SubResource("TileSet_df05h")
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/Join Menu" unique_id=824555037]
+layout_mode = 2
+placeholder_text = "Enter Name..."
+alignment = 1
+
+[node name="LineEdit2" type="LineEdit" parent="CenterContainer/Join Menu" unique_id=1357824178]
+layout_mode = 2
+placeholder_text = "Enter IP..."
+alignment = 1
+
+[node name="Join" type="Button" parent="CenterContainer/Join Menu" unique_id=158275896]
+custom_minimum_size = Vector2(125, 30)
+layout_mode = 2
+text = "Join"
+icon = SubResource("AtlasTexture_853f1")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/Join Menu/Join" unique_id=506917080]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_8um5k")
+region_rect = Rect2(0, 0, 12, 12)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label2" type="Label" parent="CenterContainer/Join Menu/Join" unique_id=685064482]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_ghw46")
+text = "Join"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true

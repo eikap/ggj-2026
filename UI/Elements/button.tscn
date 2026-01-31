@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://1nkn8l6440dq"]
+
+[ext_resource type="Texture2D" uid="uid://dvatgi5bx1roq" path="res://UI/Tilesheets/Small tiles/Thick outline/tilemap.png" id="1_merok"]
+[ext_resource type="Script" uid="uid://crkts1ktg3r10" path="res://UI/Elements/button.gd" id="2_5doto"]
+[ext_resource type="FontFile" uid="uid://djtcka3amng2q" path="res://UI/Font/AQUATIC.ttf" id="2_owwic"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_853f1"]
+atlas = ExtResource("1_merok")
+region = Rect2(53, 53, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8um5k"]
+atlas = ExtResource("1_merok")
+region = Rect2(53, 53, 12, 12)
+
+[node name="Button" type="Button" unique_id=280053826]
+text = "START"
+icon = SubResource("AtlasTexture_853f1")
+script = ExtResource("2_5doto")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1166972073]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_8um5k")
+region_rect = Rect2(0, 0, 12, 12)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="." unique_id=668060803]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_owwic")
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
