@@ -75,7 +75,7 @@ material_override = ExtResource("2_n8wlm")
 [node name="leganim" type="AnimationPlayer" parent="r_leg" index="0" unique_id=1134525821]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_8peud")
-autoplay = &"leg move"
+autoplay = &"RESET"
 
 [node name="l_leg" parent="." index="3" unique_id=530297413]
 transform = Transform3D(1, 0, 0, 0, 0.9563047, -0.29237166, 0, 0.29237166, 0.9563047, 0.16762425, 1.0793327, 0.04141904)
