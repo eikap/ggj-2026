@@ -22,6 +22,12 @@ var oxygen = 100.0
 var targetPlayer : Player
 
 func _process(delta):
+	if(oxygen <= 0):
+		if(oxygenLabel):
+			oxygenLabel.text = "Dead!"
+		
+		return
+	
 	if(is_multiplayer_authority()):
 		var targetVelocity = Vector2.ZERO
 		
