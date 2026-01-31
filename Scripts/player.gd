@@ -1,15 +1,15 @@
 extends Node3D
 
-var owningPlayer = 0
-
 @export var maxSpeed = 2
 @export var acceleration = 3
+@export var networkCorrectionSpeed = 1
 
 var moveVelocity : Vector2
+var networkPosition : Vector3
 var mousePressed : bool = false
 
 func _process(delta):
-	if(get_multiplayer_authority() == multiplayer.get_unique_id()):
+	if(is_multiplayer_authority()):
 		var targetVelocity = Vector2.ZERO
 		
 		if(mousePressed):
@@ -20,10 +20,14 @@ func _process(delta):
 			targetVelocity = direction * maxSpeed
 			
 		moveVelocity += (targetVelocity - moveVelocity) * delta * acceleration
-		update_network_state.rpc(moveVelocity)
 		
 	var velocity3d = Vector3(moveVelocity.x, -moveVelocity.y, 0) 
 	position += velocity3d * delta
+	
+	if(is_multiplayer_authority()):
+		update_network_state.rpc(moveVelocity, position)
+	elif(position.distance_squared_to(networkPosition) > 0.1):
+		position += (networkPosition - position) * delta * networkCorrectionSpeed
 	
 func _input(event):
 	# Mouse in viewport coordinates.
@@ -34,5 +38,7 @@ func _input(event):
 	#	mousePos = event.position
 	
 @rpc
-func update_network_state(newVelocity):
+func update_network_state(newVelocity : Vector2, newPosition : Vector3):
 	moveVelocity = newVelocity
+	networkPosition = newPosition
+	
