@@ -16,6 +16,7 @@ extends Node3D
 var moveVelocity : Vector2
 var networkPosition : Vector3
 var mousePressed : bool = false
+var mouseDoubleClick : bool = false
 
 var oxygen = 100.0
 var survived = false
@@ -63,7 +64,7 @@ func _process(delta):
 			
 		pick_current_target()
 		
-		if(targetPlayer && Input.is_action_just_pressed("interact")):
+		if targetPlayer && (Input.is_action_just_pressed("interact") || mouseDoubleClick):
 			var masked = targetPlayer.has_mask()
 			if(has_mask() != masked):
 				set_masked_state.rpc(masked)
@@ -71,6 +72,8 @@ func _process(delta):
 		
 	var velocity3d = Vector3(moveVelocity.x, -moveVelocity.y, 0) 
 	position += velocity3d * delta
+	
+	mouseDoubleClick = false
 	
 	#var weight = velocity3d.length()
 	#if(weight > 0):
@@ -100,6 +103,7 @@ func _input(event):
 	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		mousePressed = event.pressed
+		mouseDoubleClick = event.double_click
 	
 	#if event is InputEventMouseButton || event is InputEventMouseMotion:
 	#	mousePos = event.position
