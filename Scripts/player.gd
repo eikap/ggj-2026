@@ -83,7 +83,10 @@ func _process(delta):
 	
 	if(oxygenLabel):
 		var localPlayer : Player = Network.get_local_player_node()
-		var name = Network.players[get_multiplayer_authority()].name
+		
+		var name = ""
+		if Network.players.has(get_multiplayer_authority()):
+			name = Network.players[get_multiplayer_authority()].name
 		
 		if(localPlayer && localPlayer.crushID == get_multiplayer_authority()):
 			oxygenLabel.text = "[<3] %s [<3]\nOxygen: %d%%" % [name,oxygen]
@@ -145,7 +148,10 @@ func set_crush_id(crush):
 	
 func get_crush_player():
 	if(!crushID):
-		return
+		return null
+		
+	if(!Network.players.has(crushID)):
+		return null
 	
 	return Network.players[crushID].node
 	

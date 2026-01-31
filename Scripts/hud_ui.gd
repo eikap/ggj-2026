@@ -17,6 +17,9 @@ func _process(delta):
 	if(!localPlayer.crushID):
 		return
 		
+	if(!Network.players.has(localPlayer.crushID)):
+		return
+		
 	var crush : Player = Network.players[localPlayer.crushID].node
 	if(!crush):
 		return

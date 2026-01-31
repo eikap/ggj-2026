@@ -96,6 +96,9 @@ func _register_player(new_player_info):
 
 
 func _on_player_disconnected(id):
+	if(players[id].node):
+		players[id].node.queue_free()
+	
 	players.erase(id)
 	player_disconnected.emit(id)
 
@@ -118,6 +121,9 @@ func _on_server_disconnected():
 	
 func get_local_player_node():
 	if OS.has_feature("dedicated_server"):
+		return null
+		
+	if !Network.players.has(multiplayer.get_unique_id()):
 		return null
 	
 	return Network.players[multiplayer.get_unique_id()].node

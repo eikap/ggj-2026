@@ -11,7 +11,6 @@ func _enter_tree():
 		Network.players[playerID].node = player
 		
 		add_child(player)
-		
 
 func _ready():
 	# Preconfigure game.
