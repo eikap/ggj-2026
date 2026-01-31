@@ -7,7 +7,7 @@ extends Node3D
 @export var networkCorrectionSpeed = 1
 
 @export_category("Gameplay Features")
-@export var maskNode : Node
+@export var diver : Diver
 @export var detectionArea : Area3D
 @export var oxygenLabel : Label3D
 @export var oxygenDepletionRate = 5
@@ -111,7 +111,7 @@ func update_network_state(newVelocity : Vector2, newPosition : Vector3, newOxyge
 	
 @rpc("any_peer", "call_local")
 func set_masked_state(active : bool):
-	maskNode.set_visible(active)
+	diver.mask.set_visible(active)
 	
 func has_mask():
-	return maskNode.visible
+	return diver.mask.visible

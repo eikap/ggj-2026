@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://beo3s3agr3nqi"]
 
 [ext_resource type="Script" uid="uid://slkwk3iodtm8" path="res://Scripts/player.gd" id="1_rpqav"]
+[ext_resource type="PackedScene" uid="uid://b2ut7aqnekc43" path="res://Assets/Player/diver_player.tscn" id="2_kyqiw"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_qbkls"]
 
@@ -15,13 +16,19 @@ height = 0.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_rpqav"]
 radius = 1.2055281
 
-[node name="Player" type="Node3D" unique_id=1914127609 node_paths=PackedStringArray("maskNode", "detectionArea", "oxygenLabel")]
+[node name="Player" type="Node3D" unique_id=1914127609 node_paths=PackedStringArray("diver", "detectionArea", "oxygenLabel")]
 script = ExtResource("1_rpqav")
-maskNode = NodePath("Mask")
+diver = NodePath("DiverRoot/diver")
 detectionArea = NodePath("Area3D")
 oxygenLabel = NodePath("Label3D")
 
+[node name="DiverRoot" type="Node3D" parent="." unique_id=1461022868]
+
+[node name="diver" parent="DiverRoot" unique_id=297256398 instance=ExtResource("2_kyqiw")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1.0793637, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1426452276]
+visible = false
 mesh = SubResource("BoxMesh_qbkls")
 
 [node name="Mask" type="MeshInstance3D" parent="." unique_id=225926264]
@@ -30,7 +37,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_kyqiw")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1578833551]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8320075, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1182628, 0)
 text = "Oxygen: 100%"
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1357138656]

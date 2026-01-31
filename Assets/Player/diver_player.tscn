@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b2ut7aqnekc43"]
 
 [ext_resource type="PackedScene" uid="uid://ygca4ihdpyqs" path="res://Assets/Player/diver_player.fbx" id="1_gi5yp"]
+[ext_resource type="Script" uid="uid://c5fwjaa0qno3o" path="res://Scripts/diver.gd" id="2_gmsqa"]
 [ext_resource type="Material" uid="uid://b245ekkaf6icf" path="res://Assets/Player/body_material_yellow.tres" id="2_n8wlm"]
 [ext_resource type="Material" uid="uid://mwj3c7ouinot" path="res://Assets/Player/arm_material.tres" id="3_gmsqa"]
 
@@ -55,23 +56,19 @@ _data = {
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxpnx"]
 
-[node name="diver" unique_id=297256398 instance=ExtResource("1_gi5yp")]
+[node name="diver" unique_id=620661412 node_paths=PackedStringArray("mask") instance=ExtResource("1_gi5yp")]
+script = ExtResource("2_gmsqa")
+mask = NodePath("mask")
 
-[node name="Light" parent="." index="0" unique_id=2109334356]
-visible = false
-
-[node name="Camera" parent="." index="1" unique_id=785482569]
-visible = false
-
-[node name="body" parent="." index="2" unique_id=74950057]
+[node name="body" parent="." index="0" unique_id=672049464]
 material_override = ExtResource("2_n8wlm")
 surface_material_override/0 = ExtResource("2_n8wlm")
 
-[node name="arms" parent="." index="3" unique_id=1108133026]
+[node name="arms" parent="." index="1" unique_id=1514957666]
 material_override = ExtResource("3_gmsqa")
 surface_material_override/0 = ExtResource("2_n8wlm")
 
-[node name="r_leg" parent="." index="4" unique_id=707106354]
+[node name="r_leg" parent="." index="2" unique_id=666211622]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.17000507, 1.0939391, 0.03338457)
 material_override = ExtResource("2_n8wlm")
 
@@ -79,10 +76,10 @@ material_override = ExtResource("2_n8wlm")
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_8peud")
 
-[node name="l_leg" parent="." index="5" unique_id=143885794]
+[node name="l_leg" parent="." index="3" unique_id=530297413]
 transform = Transform3D(1, 0, 0, 0, 0.9563047, -0.29237166, 0, 0.29237166, 0.9563047, 0.16762425, 1.0793327, 0.04141904)
 material_override = ExtResource("2_n8wlm")
 
-[node name="googles" parent="." index="6" unique_id=1623008435]
+[node name="googles" parent="." index="4" unique_id=1104027529]
 material_override = ExtResource("3_gmsqa")
 surface_material_override/0 = SubResource("StandardMaterial3D_vxpnx")
