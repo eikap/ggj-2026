@@ -51,8 +51,10 @@ func create_game():
 		return error
 	multiplayer.multiplayer_peer = peer
 
-	players[1] = player_info
-	player_connected.emit(1, player_info)
+	if !OS.has_feature("dedicated_server"):
+		players[1] = player_info
+		player_connected.emit(1, player_info)
+		
 	return OK
 
 

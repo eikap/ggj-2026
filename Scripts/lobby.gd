@@ -7,7 +7,11 @@ extends Node3D
 
 func _enter_tree():
 	Network.player_connected.connect(player_connected)
-	return
+	
+	if OS.has_feature("dedicated_server"):
+		print("Server starting...")
+		on_host_clicked()
+		return
 
 func on_host_clicked():
 	if(!playerNameInput.text.is_empty()):
@@ -15,10 +19,12 @@ func on_host_clicked():
 	statusText.text = "Hosting..."
 	var result = Network.create_game()
 	
-	print(result)
 	if(result != OK):
 		statusText.text = "Failed!"
+		print("Failed!")
+		return
 		
+	print("Success!")
 	return
 	
 func on_join_clicked():

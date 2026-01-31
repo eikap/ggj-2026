@@ -19,6 +19,7 @@ text = "Join or Host Game"
 [node name="PlayerName" type="TextEdit" parent="VBoxContainer" unique_id=1304615565]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
+placeholder_text = "Player Name"
 
 [node name="Button" type="Button" parent="VBoxContainer" unique_id=938463413]
 layout_mode = 2
