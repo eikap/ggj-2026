@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://50mucm3l0a4t" path="res://FelixTest/bubble.png" id="4_bf53h"]
 [ext_resource type="Shader" uid="uid://eu5lxxugrumk" path="res://FelixTest/Underwater.gdshader" id="5_71axn"]
 [ext_resource type="Texture2D" uid="uid://bay3bscqmo44i" path="res://FelixTest/new_noise_texture_2d.tres" id="6_dahhg"]
+[ext_resource type="PackedScene" uid="uid://dafoj32escdyx" path="res://Scenes/Audio_MusicPlayer.tscn" id="7_2irst"]
 [ext_resource type="PackedScene" uid="uid://convxv2ryubc4" path="res://Scenes/OxygenBars.tscn" id="7_fgofq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nm856"]
@@ -96,3 +97,5 @@ size_flags_vertical = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer2" parent="." unique_id=1113027098 instance=ExtResource("7_fgofq")]
+
+[node name="Audio_MusicPlayer" parent="." unique_id=230560115 instance=ExtResource("7_2irst")]
