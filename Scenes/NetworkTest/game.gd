@@ -21,10 +21,14 @@ func _ready():
 
 # Called only on the server.
 func start_game():
-	var firstPlayerID = Network.players.keys()[0]
-	var firstPlayer : Player = Network.players[firstPlayerID].node
+	var numPlayers = Network.players.size()
+	var maskedPlayers = max(1, numPlayers - 2)
 	
-	firstPlayer.set_masked_state.rpc(true)
+	for i in range(0, maskedPlayers):
+		var playerID = Network.players.keys()[i]
+		var player : Player = Network.players[playerID].node
+		
+		player.set_masked_state.rpc(true)
 	
 	# All peers are ready to receive RPCs in this scene.
 	pass

@@ -70,7 +70,8 @@ func _process(delta):
 		#rotation = rotation.slerp(Vector3(0, 0, targetRotation), delta * weight * rotationSnappiness)
 	
 	if(oxygenLabel):
-		oxygenLabel.text = "Oxygen: %d%%" % oxygen
+		oxygenLabel.text = "%s\nOxygen: %d%%" % [Network.players[get_multiplayer_authority()].name,oxygen]
+		
 	
 	if(is_multiplayer_authority()):
 		update_network_state.rpc(moveVelocity, position, oxygen, victory)
