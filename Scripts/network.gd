@@ -41,6 +41,7 @@ func join_game(address = ""):
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
+	return OK
 
 
 func create_game():
@@ -50,8 +51,11 @@ func create_game():
 		return error
 	multiplayer.multiplayer_peer = peer
 
-	players[1] = player_info
-	player_connected.emit(1, player_info)
+	if !OS.has_feature("dedicated_server"):
+		players[1] = player_info
+		player_connected.emit(1, player_info)
+		
+	return OK
 
 
 func remove_multiplayer_peer():
@@ -79,7 +83,8 @@ func player_loaded():
 # When a peer connects, send them my player info.
 # This allows transfer of all desired data for each player, not only the unique ID.
 func _on_player_connected(id):
-	_register_player.rpc_id(id, player_info)
+	if !OS.has_feature("dedicated_server"):
+		_register_player.rpc_id(id, player_info)
 
 
 @rpc("any_peer", "reliable")
@@ -95,6 +100,7 @@ func _on_player_disconnected(id):
 
 
 func _on_connected_ok():
+	print("Connected OK!")
 	var peer_id = multiplayer.get_unique_id()
 	players[peer_id] = player_info
 	player_connected.emit(peer_id, player_info)
