@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://3lrhjlcfejye"]
 
 [sub_resource type="Environment" id="Environment_752sw"]
+fog_enabled = true
 
 [node name="Environment" type="Node3D" unique_id=315069916]
 

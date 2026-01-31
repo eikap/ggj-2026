@@ -58,22 +58,22 @@ fov = 30.0
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=372282986]
 mesh = ExtResource("3_k4i15")
 
-[node name="diver" parent="." unique_id=297256398 instance=ExtResource("2_onk7a")]
+[node name="diver" parent="." unique_id=620661412 instance=ExtResource("2_onk7a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -5)
 
-[node name="diver2" parent="." unique_id=255571972 instance=ExtResource("3_uvt45")]
+[node name="diver2" parent="." unique_id=297256398 instance=ExtResource("3_uvt45")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0415978, 5.355151, -5)
 
-[node name="diver3" parent="." unique_id=1276261655 instance=ExtResource("4_8eewn")]
+[node name="diver3" parent="." unique_id=1322435502 instance=ExtResource("4_8eewn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.099176, 4.6294146, -5)
 
-[node name="diver4" parent="." unique_id=889730542 instance=ExtResource("5_kcq1m")]
+[node name="diver4" parent="." unique_id=960143857 instance=ExtResource("5_kcq1m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8091868, 7.943354, -5)
 
-[node name="diver5" parent="." unique_id=975916640 instance=ExtResource("6_kcq1m")]
+[node name="diver5" parent="." unique_id=881339625 instance=ExtResource("6_kcq1m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.913759, 8.888399, -5)
 
-[node name="diver6" parent="." unique_id=1907943120 instance=ExtResource("7_s47ow")]
+[node name="diver6" parent="." unique_id=1384873607 instance=ExtResource("7_s47ow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1733093, 7.2854404, -5)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=856707682]
@@ -116,6 +116,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=1567623227]
+visible = false
 custom_minimum_size = Vector2(19.47, 0)
 anchors_preset = 15
 anchor_right = 1.0
