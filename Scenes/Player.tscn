@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://slkwk3iodtm8" path="res://Scripts/player.gd" id="1_rpqav"]
 [ext_resource type="PackedScene" uid="uid://b2ut7aqnekc43" path="res://Assets/Player/diver_player.tscn" id="2_kyqiw"]
+[ext_resource type="PackedScene" uid="uid://cmf4dcmau8rfj" path="res://Scenes/Audio_Character_Kasparas.tscn" id="3_gntrk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_qbkls"]
 
@@ -44,3 +45,6 @@ text = "Oxygen: 100%"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1178998291]
 shape = SubResource("SphereShape3D_rpqav")
+
+[node name="AudioCharacterDan" parent="." unique_id=320430587 node_paths=PackedStringArray("player") instance=ExtResource("3_gntrk")]
+player = NodePath("..")
