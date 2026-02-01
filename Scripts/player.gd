@@ -36,6 +36,8 @@ enum PlayerState {Alive, Drowned, Crush_Drowned, Survived}
 var playerState : PlayerState = PlayerState.Alive
 
 func _process(delta):
+	var wasAlive = playerState == PlayerState.Alive
+	
 	var crushPlayer : Player = get_crush_player()
 	if(crushPlayer && crushPlayer.oxygen <= 0):
 		if(oxygenLabel):
@@ -49,6 +51,10 @@ func _process(delta):
 		if(oxygenLabel):
 			oxygenLabel.text = "Drowned!"
 		playerState = PlayerState.Drowned
+	
+	if wasAlive && playerState != PlayerState.Alive:
+		diver.animPlayer.play("death")
+		
 	
 	if (playerState == PlayerState.Alive):
 		if(is_multiplayer_authority()):
@@ -93,6 +99,7 @@ func _process(delta):
 		mouseDoubleClick = false
 		rotation.y = -velocity3d.x * (PI / 5)
 		
+		diver.animPlayer.speed_scale = max(velocity3d.length(), 0.8)
 		
 		#var weight = velocity3d.length()
 		#if(weight > 0):

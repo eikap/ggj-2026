@@ -2,6 +2,7 @@ class_name Diver
 extends Node3D
 
 @export var mask : Node3D
+@export var animPlayer : AnimationPlayer
 
 @export var materials : Array[Material]
 @export var coloredNodes : Array[MeshInstance3D]
