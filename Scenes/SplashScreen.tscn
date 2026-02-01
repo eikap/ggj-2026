@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://dheg3r02di06i"]
+[gd_scene format=3 uid="uid://c0dliu6gkeclq"]
 
-[ext_resource type="Shader" uid="uid://b7kf747lpdrnh" path="res://Scenes/slightwatershimmer.gdshader" id="1_7m5qv"]
-[ext_resource type="Script" uid="uid://du0gsa0n3ourh" path="res://Scenes/splash_screen.gd" id="1_ki8ww"]
+[ext_resource type="Shader" path="res://Scenes/slightwatershimmer.gdshader" id="1_7m5qv"]
+[ext_resource type="Script" path="res://Scenes/splash_screen.gd" id="1_ki8ww"]
 [ext_resource type="FontFile" uid="uid://cawkic5e0j8q" path="res://UI/Font/Aerofoil.ttf" id="1_lus2m"]
 [ext_resource type="Texture2D" uid="uid://50mucm3l0a4t" path="res://FelixTest/bubble.png" id="2_pufkq"]
-[ext_resource type="AudioStream" uid="uid://1qy3wrdg8rgp" path="res://Audio/Music/Glass Tide Loop_Splash.mp3" id="3_pufkq"]
+[ext_resource type="AudioStream" uid="uid://bwxj2yyqj64q8" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Splash.mp3" id="5_ki8ww"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ki8ww"]
 shader = ExtResource("1_7m5qv")
@@ -130,7 +130,7 @@ scale_amount_max = 0.03
 color_ramp = SubResource("Gradient_7m5qv")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1462262792]
-stream = ExtResource("3_pufkq")
+stream = ExtResource("5_ki8ww")
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=985462441]
