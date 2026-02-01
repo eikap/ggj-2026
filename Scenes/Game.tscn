@@ -180,7 +180,7 @@ transform = Transform3D(-1.451111, 0, -2.6503723, 0, 5.1092157, 0, 3.1120582, 0,
 transform = Transform3D(13.305564, 0, -1.1368684e-13, 0, 5.082472, 0, 0, 0, 11.733872, -1.1026859e-06, 3.2840233, 23.58752)
 
 [node name="Background" parent="Tub" unique_id=810297713 instance=ExtResource("11_3so38")]
-transform = Transform3D(-6.526932, 0, 8.742278e-08, 0, 1.9308456, 0, -5.706025e-07, 0, -1, -1.0508062e-06, 48.35664, 62.262928)
+transform = Transform3D(-6.526932, 0, 8.742278e-08, 0, 1.9308456, 0, -5.706025e-07, 0, -1, -1.1920929e-06, 48.356636, 63.90826)
 
 [node name="coral" parent="." unique_id=1366947986 instance=ExtResource("13_3cx6b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.429142, 0, -34.640003)
