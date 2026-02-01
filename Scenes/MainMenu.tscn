@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://xq4xpl28u8a0" path="res://UI/UITheme.tres" id="1_8saeu"]
 [ext_resource type="Texture2D" uid="uid://ds3qyt28ouqg5" path="res://UI/Tilesheets/Large tiles/Thin outline/tilemap.png" id="1_853f1"]
+[ext_resource type="FontFile" uid="uid://wv6vcqmrs2ms" path="res://UI/Font/Finalnew.ttf" id="2_df05h"]
 [ext_resource type="Texture2D" uid="uid://dvatgi5bx1roq" path="res://UI/Tilesheets/Small tiles/Thick outline/tilemap.png" id="3_8saeu"]
 [ext_resource type="FontFile" uid="uid://djtcka3amng2q" path="res://UI/Font/AQUATIC.ttf" id="4_ghw46"]
 
@@ -121,6 +122,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8saeu")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1211707370]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078329615, 0.106991254, 0.13757586, 1)
+
 [node name="Title" type="Label" parent="." unique_id=1401671786]
 layout_mode = 1
 anchors_preset = 5
@@ -130,10 +140,10 @@ offset_left = -62.5
 offset_right = 62.5
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "Place Holder"
+theme_override_fonts/font = ExtResource("2_df05h")
+text = "Masked by Love"
 horizontal_alignment = 1
 vertical_alignment = 1
-uppercase = true
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1555548089]
 layout_mode = 1
@@ -236,11 +246,13 @@ tile_set = SubResource("TileSet_df05h")
 
 [node name="LineEdit" type="LineEdit" parent="CenterContainer/Join Menu" unique_id=824555037]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_df05h")
 placeholder_text = "Enter Name..."
 alignment = 1
 
 [node name="LineEdit2" type="LineEdit" parent="CenterContainer/Join Menu" unique_id=1357824178]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_df05h")
 placeholder_text = "Enter IP..."
 alignment = 1
 
@@ -277,7 +289,7 @@ offset_right = 20.0
 offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_ghw46")
+theme_override_fonts/font = ExtResource("2_df05h")
 text = "Join"
 horizontal_alignment = 1
 vertical_alignment = 1
