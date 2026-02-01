@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cywrodpr3tk53"]
 
 [ext_resource type="Script" uid="uid://dcij1pbm6gfar" path="res://Scripts/UI/player_name.gd" id="1_1ja1o"]
-[ext_resource type="Texture2D" uid="uid://c3gsedsjhfahl" path="res://icon.svg" id="2_ieqrl"]
+[ext_resource type="Texture2D" uid="uid://5qs4qorywhm4" path="res://UI/Elements/playerIcon.png" id="2_ieqrl"]
+[ext_resource type="FontFile" uid="uid://wv6vcqmrs2ms" path="res://UI/Font/Finalnew.ttf" id="3_cym8l"]
 
 [node name="Player Name" type="HBoxContainer" unique_id=1269626086]
 script = ExtResource("1_1ja1o")
@@ -21,4 +22,6 @@ expand_mode = 2
 [node name="Player Name" type="Label" parent="." unique_id=1620887288]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_cym8l")
+theme_override_font_sizes/font_size = 18
 text = "Player Name"

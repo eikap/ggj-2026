@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dw0qsaon6uuyf" path="res://Scripts/lobby.gd" id="1_60hj3"]
 [ext_resource type="PackedScene" uid="uid://cywrodpr3tk53" path="res://Scenes/UI/player_name_menu_item.tscn" id="2_wnqcy"]
+[ext_resource type="FontFile" uid="uid://wv6vcqmrs2ms" path="res://UI/Font/Finalnew.ttf" id="3_am8ls"]
 
 [node name="LobbyTest" type="Node3D" unique_id=1866654882 node_paths=PackedStringArray("statusText", "joinButton", "startButton", "ipInput", "playerNameInput")]
 script = ExtResource("1_60hj3")
@@ -25,7 +26,10 @@ size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=1001263600]
 layout_mode = 2
-text = "Join Game"
+theme_override_fonts/font = ExtResource("3_am8ls")
+theme_override_font_sizes/font_size = 25
+text = "Lobby"
+horizontal_alignment = 1
 
 [node name="PlayerName" type="TextEdit" parent="VBoxContainer" unique_id=1304615565]
 visible = false
@@ -49,6 +53,7 @@ layout_mode = 2
 
 [node name="JoinButton" type="Button" parent="VBoxContainer" unique_id=1380734735]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_am8ls")
 text = "Join Game"
 
 [node name="StartButton" type="Button" parent="VBoxContainer" unique_id=1754972572]
@@ -58,6 +63,7 @@ text = "Start"
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer" unique_id=973130147]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_am8ls")
 text = "Fullscreen"
 
 [connection signal="pressed" from="VBoxContainer/JoinButton" to="." method="on_join_clicked"]
