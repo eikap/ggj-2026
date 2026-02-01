@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://c0dliu6gkeclq"]
+[gd_scene format=3 uid="uid://f57e13bdevxp"]
 
 [ext_resource type="Shader" path="res://Scenes/slightwatershimmer.gdshader" id="1_7m5qv"]
-[ext_resource type="Script" path="res://Scenes/splash_screen.gd" id="1_ki8ww"]
+[ext_resource type="Script" uid="uid://du0gsa0n3ourh" path="res://Scenes/splash_screen.gd" id="1_ki8ww"]
 [ext_resource type="FontFile" uid="uid://cawkic5e0j8q" path="res://UI/Font/Aerofoil.ttf" id="1_lus2m"]
 [ext_resource type="Texture2D" uid="uid://50mucm3l0a4t" path="res://FelixTest/bubble.png" id="2_pufkq"]
 [ext_resource type="AudioStream" uid="uid://bwxj2yyqj64q8" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Splash.mp3" id="5_ki8ww"]
