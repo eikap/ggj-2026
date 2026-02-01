@@ -1,19 +1,137 @@
 [gd_scene format=3 uid="uid://dheg3r02di06i"]
 
-[node name="SplashScreen" type="Node2D" unique_id=1043899968]
+[ext_resource type="Shader" uid="uid://b7kf747lpdrnh" path="res://Scenes/slightwatershimmer.gdshader" id="1_7m5qv"]
+[ext_resource type="Script" uid="uid://du0gsa0n3ourh" path="res://Scenes/splash_screen.gd" id="1_ki8ww"]
+[ext_resource type="FontFile" uid="uid://cawkic5e0j8q" path="res://UI/Font/Aerofoil.ttf" id="1_lus2m"]
+[ext_resource type="Texture2D" uid="uid://50mucm3l0a4t" path="res://FelixTest/bubble.png" id="2_pufkq"]
+[ext_resource type="AudioStream" uid="uid://1qy3wrdg8rgp" path="res://Audio/Music/Glass Tide Loop_Splash.mp3" id="3_pufkq"]
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1128041931]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ki8ww"]
+shader = ExtResource("1_7m5qv")
+shader_parameter/distortion_strength = 0.002000000095
+shader_parameter/speed = 1.3290000631275
+shader_parameter/frequency = 126.19
+
+[sub_resource type="Gradient" id="Gradient_7m5qv"]
+offsets = PackedFloat32Array(0.5106383, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_7m5qv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/CenterContainer/Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/CPUParticles2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ki8ww"]
+resource_name = "text fade in"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/CenterContainer/Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.001, 2.5, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/CPUParticles2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.5, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mm423"]
+_data = {
+&"RESET": SubResource("Animation_7m5qv"),
+&"text fade in": SubResource("Animation_ki8ww")
+}
+
+[node name="SplashScreen" type="Node2D" unique_id=1043899968]
+script = ExtResource("1_ki8ww")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1245108425]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1128041931]
+custom_minimum_size = Vector2(91.315, 90.6)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.24719092, 0.49477315, 1)
+color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect" unique_id=1962168569]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1962168569]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect" unique_id=985462441]
-root_node = NodePath("../..")
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=1801186672]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -6.1035156e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer" unique_id=1216182948]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer" unique_id=395229008]
+material = SubResource("ShaderMaterial_ki8ww")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lus2m")
+theme_override_font_sizes/font_size = 23
+text = "Masked by Love"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="CanvasLayer" unique_id=313278174]
+position = Vector2(116, 429)
+texture = ExtResource("2_pufkq")
+lifetime = 3.42
+emission_shape = 3
+emission_rect_extents = Vector2(100, 1)
+gravity = Vector2(0, -54.57)
+scale_amount_min = 0.01
+scale_amount_max = 0.03
+color_ramp = SubResource("Gradient_7m5qv")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1462262792]
+stream = ExtResource("3_pufkq")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=985462441]
+libraries/ = SubResource("AnimationLibrary_mm423")
