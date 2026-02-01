@@ -37,138 +37,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.29670596, 0, 0)]
 }
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("r_leg:rotation:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-0.35896188, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("r_leg:rotation:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("r_leg:rotation:z")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("l_leg:rotation:x")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-0.17345084, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("l_leg:rotation:y")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("l_leg:rotation:z")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("arms:position:x")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/9/type = "bezier"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("arms:position:y")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/10/type = "bezier"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("arms:position:z")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.28527582, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/11/type = "bezier"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("arms:rotation:x")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-0.18743098, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/12/type = "bezier"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("arms:rotation:y")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/13/type = "bezier"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("arms:rotation:z")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
 
 [sub_resource type="Animation" id="Animation_baur6"]
 resource_name = "leg move"
@@ -215,15 +83,15 @@ mask = NodePath("mask")
 materials = Array[Material]([ExtResource("2_n8wlm"), ExtResource("4_wli2s"), ExtResource("5_0ya68"), ExtResource("6_pkse6"), ExtResource("7_6uqmm"), ExtResource("8_trc7u")])
 coloredNodes = [NodePath("body"), NodePath("r_leg"), NodePath("l_leg")]
 
-[node name="body" parent="." index="0" unique_id=1749534117]
+[node name="body" parent="." index="0" unique_id=672049464]
 surface_material_override/0 = ExtResource("2_n8wlm")
 
-[node name="arms" parent="." index="1" unique_id=1525354210]
-transform = Transform3D(1, 0, 0, 0, 0.9824861, 0.18633547, 0, -0.18633547, 0.9824861, 0, 0, 0.28527582)
+[node name="arms" parent="." index="1" unique_id=1514957666]
+transform = Transform3D(1, 0, 0, 0, 0.99593645, 0.09005905, 0, -0.09005905, 0.99593645, 0, 0, 0.14927894)
 material_override = ExtResource("3_gmsqa")
 
-[node name="r_leg" parent="." index="2" unique_id=934203323]
-transform = Transform3D(1, 0, 0, 0, 0.93626195, 0.35130244, 0, -0.35130244, 0.93626195, -0.17000507, 1.0939391, 0.03338457)
+[node name="r_leg" parent="." index="2" unique_id=666211622]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.17000507, 1.0939391, 0.03338457)
 surface_material_override/0 = ExtResource("2_n8wlm")
 
 [node name="leganim" type="AnimationPlayer" parent="r_leg" index="0" unique_id=1134525821]
@@ -231,15 +99,15 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_8peud")
 autoplay = &"RESET"
 
-[node name="l_leg" parent="." index="3" unique_id=1651860767]
-transform = Transform3D(1, 0, 0, 0, 0.984995, 0.17258242, 0, -0.17258242, 0.984995, 0.16762425, 1.0793327, 0.04141904)
+[node name="l_leg" parent="." index="3" unique_id=530297413]
+transform = Transform3D(1, 0, 0, 0, 0.9563047, -0.29237166, 0, 0.29237166, 0.9563047, 0.16762425, 1.0793327, 0.04141904)
 surface_material_override/0 = ExtResource("2_n8wlm")
 
-[node name="googles" parent="." index="4" unique_id=519192193]
+[node name="googles" parent="." index="4" unique_id=1104027529]
 material_override = ExtResource("3_gmsqa")
 surface_material_override/0 = SubResource("StandardMaterial3D_vxpnx")
 
-[node name="mask" parent="." index="5" unique_id=477931628]
+[node name="mask" parent="." index="5" unique_id=470435628]
 visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_n8wlm")
 surface_material_override/1 = SubResource("StandardMaterial3D_gmsqa")
