@@ -32,89 +32,87 @@ var stealTarget : Player
 var giveTarget : Player
 var crushID : int
 
+enum PlayerState {Alive, Drowned, Crush_Drowned, Survived}
+var playerState : PlayerState = PlayerState.Alive
+
 func _process(delta):
 	var crushPlayer : Player = get_crush_player()
 	if(crushPlayer && crushPlayer.oxygen <= 0):
 		if(oxygenLabel):
 			oxygenLabel.text = "Crush Dead!"
-			
-			return
-			
-	
-	if(survived):
+		playerState = PlayerState.Crush_Drowned
+	elif(survived):
 		if(oxygenLabel):
 			oxygenLabel.text = "Survived!"
-			
-		return
-	
-	if(oxygen <= 0):
+		playerState = PlayerState.Survived
+	elif(oxygen <= 0):
 		if(oxygenLabel):
-			oxygenLabel.text = "Dead!"
-		
-		return
+			oxygenLabel.text = "Drowned!"
+		playerState = PlayerState.Drowned
 	
-	if(is_multiplayer_authority()):
-		var targetVelocity = Vector2.ZERO
-		
-		if(mousePressed):
-			var screenSpacePos : Vector2 = get_viewport().get_camera_3d().unproject_position(position)
-			var mousePos = get_viewport().get_mouse_position()
+	if (playerState == PlayerState.Alive):
+		if(is_multiplayer_authority()):
+			var targetVelocity = Vector2.ZERO
 			
-			var direction = (mousePos - screenSpacePos).normalized()
+			if(mousePressed):
+				var screenSpacePos : Vector2 = get_viewport().get_camera_3d().unproject_position(position)
+				var mousePos = get_viewport().get_mouse_position()
+				
+				var direction = (mousePos - screenSpacePos).normalized()
+				
+				var speedMultiplier = 1
+				if(has_mask()):
+					speedMultiplier = 0.9
+				targetVelocity = direction * maxSpeed * speedMultiplier
+				
+			moveVelocity += (targetVelocity - moveVelocity) * delta * acceleration
 			
-			var speedMultiplier = 1
 			if(has_mask()):
-				speedMultiplier = 0.9
-			targetVelocity = direction * maxSpeed * speedMultiplier
+				oxygen = clamp(oxygen + oxygenDepletionRate * delta, 0, 100)
+			else:
+				oxygen = clamp(oxygen - oxygenDepletionRate * delta, 0, 100)
+				
+			pick_current_target()
 			
-		moveVelocity += (targetVelocity - moveVelocity) * delta * acceleration
-		
-		if(has_mask()):
-			oxygen = clamp(oxygen + oxygenDepletionRate * delta, 0, 100)
-		else:
-			oxygen = clamp(oxygen - oxygenDepletionRate * delta, 0, 100)
+			var shouldInteract = (Input.is_action_just_pressed("interact") || mouseDoubleClick)
+			if shouldInteract:
+				if has_mask() && giveTarget && !giveTarget.has_mask():
+					set_masked_state.rpc(false, true, true)
+					giveTarget.set_masked_state.rpc(true, true, true)
+				elif !has_mask() && stealTarget && stealTarget.has_mask():
+					set_masked_state.rpc(true, false, true)
+					stealTarget.set_masked_state.rpc(false, false, true)
 			
-		pick_current_target()
+		var velocity3d = Vector3(moveVelocity.x, -moveVelocity.y, 0) 
+		position += velocity3d * delta
 		
-		var shouldInteract = (Input.is_action_just_pressed("interact") || mouseDoubleClick)
-		if shouldInteract:
-			if has_mask() && giveTarget && !giveTarget.has_mask():
-				set_masked_state.rpc(false, true, true)
-				giveTarget.set_masked_state.rpc(true, true, true)
-			elif !has_mask() && stealTarget && stealTarget.has_mask():
-				set_masked_state.rpc(true, false, true)
-				stealTarget.set_masked_state.rpc(false, false, true)
+		position.x = clamp(position.x, -movementRangeX, movementRangeX)
+		position.y = max(position.y, movementFloorY)
+		#position = clamp(position, Vector3(-movementRangeX, movementFloorY, 0), Vector3(movementRangeX, movementFloorY, 0))
 		
-	var velocity3d = Vector3(moveVelocity.x, -moveVelocity.y, 0) 
-	position += velocity3d * delta
-	
-	position.x = clamp(position.x, -movementRangeX, movementRangeX)
-	position.y = max(position.y, movementFloorY)
-	#position = clamp(position, Vector3(-movementRangeX, movementFloorY, 0), Vector3(movementRangeX, movementFloorY, 0))
-	
-	mouseDoubleClick = false
-	
-	#var weight = velocity3d.length()
-	#if(weight > 0):
-	#	var targetRotation = Vector3.LEFT.angle_to(velocity3d)
-	#	rotation = Vector3(0, 0, targetRotation)
-		#rotation = rotation.slerp(Vector3(0, 0, targetRotation), delta * weight * rotationSnappiness)
-	
-	if(oxygenLabel):
-		var localPlayer : Player = Network.get_local_player_node()
+		mouseDoubleClick = false
 		
-		var name = ""
-		if Network.players.has(get_multiplayer_authority()):
-			name = Network.players[get_multiplayer_authority()].name
+		#var weight = velocity3d.length()
+		#if(weight > 0):
+		#	var targetRotation = Vector3.LEFT.angle_to(velocity3d)
+		#	rotation = Vector3(0, 0, targetRotation)
+			#rotation = rotation.slerp(Vector3(0, 0, targetRotation), delta * weight * rotationSnappiness)
 		
-		if(localPlayer && localPlayer.crushID == get_multiplayer_authority()):
-			oxygenLabel.text = "[<3] %s [<3]\nOxygen: %d%%" % [name,oxygen]
-		else:
-			oxygenLabel.text = "%s\nOxygen: %d%%" % [name,oxygen]
+		if(oxygenLabel):
+			var localPlayer : Player = Network.get_local_player_node()
+			
+			var name = ""
+			if Network.players.has(get_multiplayer_authority()):
+				name = Network.players[get_multiplayer_authority()].name
+			
+			if(localPlayer && localPlayer.crushID == get_multiplayer_authority()):
+				oxygenLabel.text = "[<3] %s [<3]\nOxygen: %d%%" % [name,oxygen]
+			else:
+				oxygenLabel.text = "%s\nOxygen: %d%%" % [name,oxygen]
 		
 	
 	if(is_multiplayer_authority()):
-		update_network_state.rpc(moveVelocity, position, oxygen, survived)
+		update_network_state.rpc(moveVelocity, position, oxygen, survived, playerState)
 	elif(position.distance_squared_to(networkPosition) > 0.1):
 		position += (networkPosition - position) * delta * networkCorrectionSpeed
 	
@@ -164,11 +162,18 @@ func pick_current_target():
 	
 	
 @rpc
-func update_network_state(newVelocity : Vector2, newPosition : Vector3, newOxygen, newVictory):
+func update_network_state(
+	newVelocity : Vector2,
+	newPosition : Vector3,
+	newOxygen,
+	newVictory,
+	newPlayerState : PlayerState
+):
 	moveVelocity = newVelocity
 	networkPosition = newPosition
 	oxygen = newOxygen
 	survived = newVictory
+	playerState = newPlayerState
 	
 @rpc("any_peer", "call_local")
 func set_masked_state(active : bool, willing : bool, emitEvent : bool):

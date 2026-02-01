@@ -9,10 +9,13 @@ extends Node3D
 @export var playerNameInput : TextEdit
 
 @export_file_path("*.tscn") var gameScene : String
+@export var playerNameUIElement : PackedScene
 
 @export_file_path("*.json") var playerNames : String
 var player_name_adjectives	: Array[String] = []
 var player_name_nouns		: Array[String] = []
+
+const min_num_players : int = 2
 
 func _enter_tree():
 	Network.player_connected.connect(player_connected)
@@ -46,7 +49,7 @@ func on_join_clicked():
 		statusText.text = "Failed!"
 		return
 		
-	startButton.set_visible(true)
+	startButton.set_visible(false)
 	joinButton.set_visible(false)
 	
 func on_start_clicked():
@@ -54,10 +57,23 @@ func on_start_clicked():
 	return
 
 func player_connected(_peer_id, player_info):
-	if (_peer_id == multiplayer.get_unique_id()):
-		statusText.text += "\nYou (" + player_info.name + ") Joined!"
-	else:
-		statusText.text += "\n" + player_info.name + " Joined!"
+	var playerUINode = playerNameUIElement.instantiate()
+	playerUINode.isLocalPlayer = _peer_id == multiplayer.get_unique_id()
+	playerUINode.playerName = player_info.name
+	$VBoxContainer/PlayerList/PlayerListContainer.add_child(playerUINode)
+	
+	var playerNum = Network.players.size()
+	var readyToGo = playerNum >= min_num_players
+	
+	var status = "Waiting for Players %s/%s" % [playerNum, min_num_players]
+	
+	if (readyToGo): status = "Ready to Play!"
+	
+	if(is_multiplayer_authority()):
+		update_lobby_state.rpc(
+			status,
+			readyToGo
+		)
 	return
 
 
@@ -83,3 +99,8 @@ func generate_random_name() -> String:
 	var adj = player_name_adjectives[randi() % player_name_adjectives.size()]
 	var noun = player_name_nouns[randi() % player_name_nouns.size()]
 	return "%s %s" % [adj, noun]
+	
+@rpc()
+func update_lobby_state(lobbyState: String, readyToStart: bool):
+	statusText.text = lobbyState
+	startButton.set_visible(readyToStart)

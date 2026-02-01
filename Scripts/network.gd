@@ -19,7 +19,7 @@ var players = {}
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
-var player_info = {"name": "Name"}
+var player_info = {"name": "Name", "node" : null}
 
 var players_loaded = 0
 
@@ -96,9 +96,10 @@ func _register_player(new_player_info):
 
 
 func _on_player_disconnected(id):
-	if(players[id].node):
-		players[id].node.queue_free()
-	
+	if(players[id].has("node")):
+		if(players[id].node):
+			players[id].node.queue_free()
+		
 	players.erase(id)
 	player_disconnected.emit(id)
 

@@ -1,15 +1,17 @@
 [gd_scene format=3 uid="uid://dufbwtr7g2wuy"]
 
 [ext_resource type="Script" uid="uid://dw0qsaon6uuyf" path="res://Scripts/lobby.gd" id="1_60hj3"]
+[ext_resource type="PackedScene" uid="uid://cywrodpr3tk53" path="res://Scenes/UI/player_name_menu_item.tscn" id="2_wnqcy"]
 
 [node name="LobbyTest" type="Node3D" unique_id=1866654882 node_paths=PackedStringArray("statusText", "joinButton", "startButton", "ipInput", "playerNameInput")]
 script = ExtResource("1_60hj3")
 statusText = NodePath("VBoxContainer/Label")
-joinButton = NodePath("VBoxContainer/Button2")
+joinButton = NodePath("VBoxContainer/JoinButton")
 startButton = NodePath("VBoxContainer/StartButton")
 ipInput = NodePath("VBoxContainer/IP")
 playerNameInput = NodePath("VBoxContainer/PlayerName")
 gameScene = "res://Scenes/Game.tscn"
+playerNameUIElement = ExtResource("2_wnqcy")
 playerNames = "res://Assets/player_names.json"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1962825021]
@@ -26,16 +28,26 @@ layout_mode = 2
 text = "Join Game"
 
 [node name="PlayerName" type="TextEdit" parent="VBoxContainer" unique_id=1304615565]
+visible = false
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 placeholder_text = "Player Name"
 
 [node name="IP" type="TextEdit" parent="VBoxContainer" unique_id=1231275400]
+visible = false
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "127.0.0.1:7001"
 
-[node name="Button2" type="Button" parent="VBoxContainer" unique_id=1380734735]
+[node name="PlayerList" type="ScrollContainer" parent="VBoxContainer" unique_id=2012827409]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="PlayerListContainer" type="VBoxContainer" parent="VBoxContainer/PlayerList" unique_id=554332376]
+layout_mode = 2
+
+[node name="JoinButton" type="Button" parent="VBoxContainer" unique_id=1380734735]
 layout_mode = 2
 text = "Join Game"
 
@@ -48,6 +60,6 @@ text = "Start"
 layout_mode = 2
 text = "Fullscreen"
 
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="on_join_clicked"]
+[connection signal="pressed" from="VBoxContainer/JoinButton" to="." method="on_join_clicked"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="on_start_clicked"]
 [connection signal="toggled" from="VBoxContainer/CheckButton" to="." method="_on_fullscreen_toggled"]

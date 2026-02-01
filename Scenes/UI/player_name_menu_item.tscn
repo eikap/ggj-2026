@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cywrodpr3tk53"]
+
+[ext_resource type="Script" uid="uid://dcij1pbm6gfar" path="res://Scripts/UI/player_name.gd" id="1_1ja1o"]
+[ext_resource type="Texture2D" uid="uid://c3gsedsjhfahl" path="res://icon.svg" id="2_ieqrl"]
+
+[node name="Player Name" type="HBoxContainer" unique_id=1269626086]
+script = ExtResource("1_1ja1o")
+
+[node name="Control" type="Control" parent="." unique_id=377250099]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=521827838]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_ieqrl")
+expand_mode = 2
+
+[node name="Player Name" type="Label" parent="." unique_id=1620887288]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player Name"
