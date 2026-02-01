@@ -16,7 +16,6 @@
 size = Vector3(26.302002, 1, 10.48999)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dahhg"]
-transparency = 1
 albedo_color = Color(0.2627451, 0.70980394, 1, 1)
 disable_receive_shadows = true
 
@@ -57,8 +56,8 @@ shader_parameter/noise_tex = ExtResource("6_dahhg")
 shader_parameter/distortion_strength = 0.005
 shader_parameter/wave_speed = 0.2
 shader_parameter/wave_scale = 2.0
-shader_parameter/water_color = Color(0, 0.6651851, 0.7977378, 1)
-shader_parameter/absorption_strength = 0.4
+shader_parameter/water_color = Color(4.813075e-06, 0.6812677, 0.8132977, 1)
+shader_parameter/absorption_strength = 0.3
 
 [sub_resource type="Environment" id="Environment_bf53h"]
 glow_intensity = 0.0
@@ -94,8 +93,8 @@ transform = Transform3D(100, 0, 0, 0, 0.06625365, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_nm856")
 
 [node name="Bubbles" type="GPUParticles2D" parent="." unique_id=559252368]
-position = Vector2(120, 431.42)
-scale = Vector2(0.3, 0.3)
+position = Vector2(390, 431)
+scale = Vector2(0.65999633, 0.3)
 amount = 500
 texture = ExtResource("4_bf53h")
 lifetime = 20.0
