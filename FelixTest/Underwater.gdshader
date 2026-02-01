@@ -22,7 +22,7 @@ vec2 n1 = texture(noise_tex, uv1).rg;
 vec2 n2 = texture(noise_tex, uv2).rg;
 
 vec2 noise = (n1 + n2) * 0.5;
-uv += (noise - 0.5) * distortion_strength;
+//uv += (noise - 0.5) * distortion_strength;
 
     // Sample screen
     vec4 col = texture(SCREEN_TEXTURE, uv);
