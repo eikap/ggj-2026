@@ -24,22 +24,22 @@ func _process(_delta: float) -> void:
 		fadeIn.tween_property(audio_voice,"volume_db",0,1)
 		fadeIn.tween_property(audio_bubbles,"volume_db",0,1)
 		fadeOutGate = true
-		#print("play")
+		print("play")
 
 	if  (player.oxygen >= 80 || player.oxygen == 0) && audio_voice.playing == true:
 		if fadeOutGate == true:
 			var fadeOut = get_tree().create_tween()
 			fadeOut.tween_property(audio_bubbles,"volume_db",-80,0.5)
 			fadeOut.tween_property(audio_voice,"volume_db",-80,0.5)
-			#print("fadeout start")
+			print("fadeout start")
 			fadeOutGate = false
 		if audio_bubbles.volume_db == -80:
 				audio_voice.stop()
 				audio_bubbles.stop()
-				#print("sound stopped")				
+				print("sound stopped")
 
 func gaveAwayMask():
-	audio_mask_pass.play()	
+	audio_mask_pass.play()
 
 func lostMask():
 	audio_mask_steal.play()
