@@ -77,9 +77,10 @@ rim_enabled = true
 rim = 0.52
 disable_receive_shadows = true
 
-[node name="diver" unique_id=620661412 node_paths=PackedStringArray("mask", "coloredNodes") instance=ExtResource("1_gi5yp")]
+[node name="diver" unique_id=620661412 node_paths=PackedStringArray("mask", "animPlayer", "coloredNodes") instance=ExtResource("1_gi5yp")]
 script = ExtResource("2_gmsqa")
 mask = NodePath("mask")
+animPlayer = NodePath("r_leg/leganim")
 materials = Array[Material]([ExtResource("2_n8wlm"), ExtResource("4_wli2s"), ExtResource("5_0ya68"), ExtResource("6_pkse6"), ExtResource("7_6uqmm"), ExtResource("8_trc7u")])
 coloredNodes = [NodePath("body"), NodePath("r_leg"), NodePath("l_leg")]
 
@@ -98,6 +99,7 @@ surface_material_override/0 = ExtResource("2_n8wlm")
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_8peud")
 autoplay = &"RESET"
+movie_quit_on_finish = true
 
 [node name="l_leg" parent="." index="3" unique_id=530297413]
 transform = Transform3D(1, 0, 0, 0, 0.9563047, -0.29237166, 0, 0.29237166, 0.9563047, 0.16762425, 1.0793327, 0.04141904)
