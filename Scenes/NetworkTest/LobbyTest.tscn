@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://dw0qsaon6uuyf" path="res://Scripts/lobby.gd" id="1_60hj3"]
 [ext_resource type="PackedScene" uid="uid://cywrodpr3tk53" path="res://Scenes/UI/player_name_menu_item.tscn" id="2_wnqcy"]
 [ext_resource type="FontFile" uid="uid://wv6vcqmrs2ms" path="res://UI/Font/Finalnew.ttf" id="3_am8ls"]
+[ext_resource type="Texture2D" uid="uid://dvatgi5bx1roq" path="res://UI/Tilesheets/Small tiles/Thick outline/tilemap.png" id="4_87t47"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_riuof"]
+atlas = ExtResource("4_87t47")
+region = Rect2(53, 53, 12, 12)
 
 [node name="LobbyTest" type="Node3D" unique_id=1866654882 node_paths=PackedStringArray("statusText", "joinButton", "startButton", "ipInput", "playerNameInput")]
 script = ExtResource("1_60hj3")
@@ -53,13 +58,81 @@ layout_mode = 2
 
 [node name="JoinButton" type="Button" parent="VBoxContainer" unique_id=1380734735]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_fonts/font = ExtResource("3_am8ls")
 text = "Join Game"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/JoinButton" unique_id=2147473303]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_riuof")
+region_rect = Rect2(0, 0, 12, 12)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label2" type="Label" parent="VBoxContainer/JoinButton" unique_id=1048669713]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_am8ls")
+text = "Join"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="StartButton" type="Button" parent="VBoxContainer" unique_id=1754972572]
 visible = false
 layout_mode = 2
 text = "Start"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/StartButton" unique_id=823778887]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_riuof")
+region_rect = Rect2(0, 0, 12, 12)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label2" type="Label" parent="VBoxContainer/StartButton" unique_id=679723600]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.0
+offset_right = 20.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_am8ls")
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer" unique_id=973130147]
 layout_mode = 2
