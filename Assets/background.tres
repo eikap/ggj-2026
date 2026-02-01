@@ -18,7 +18,7 @@ default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.299, 0.587, 0.114)]
 [sub_resource type="Gradient" id="Gradient_ork78"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.4800995, 1)
-colors = PackedColorArray(0.19352868, 0.21592581, 0.44653285, 1, 0.54359895, 0.63106513, 0.92142624, 1, 0.5819186, 0.98567194, 0.9999996, 1)
+colors = PackedColorArray(0.08886718, 0.10170748, 0.23781663, 1, 0.35785782, 0.45269936, 0.8326636, 1, 1.6942024e-05, 0.79415095, 0.8176273, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fnhhe"]
 gradient = SubResource("Gradient_ork78")
