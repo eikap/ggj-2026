@@ -13,6 +13,9 @@ extends Node3D
 @export var oxygenLabel : Label3D
 @export var oxygenDepletionRate = 8
 
+signal gave_away_mask
+signal lost_mask
+
 var moveVelocity : Vector2
 var networkPosition : Vector3
 
@@ -23,7 +26,8 @@ var mouseLastClickTime : int = 0
 var oxygen = 100.0
 var survived = false
 
-var targetPlayer : Player
+var stealTarget : Player
+var giveTarget : Player
 var crushID : int
 
 func _process(delta):
@@ -70,11 +74,14 @@ func _process(delta):
 			
 		pick_current_target()
 		
-		if targetPlayer && (Input.is_action_just_pressed("interact") || mouseDoubleClick):
-			var masked = targetPlayer.has_mask()
-			if(has_mask() != masked):
-				set_masked_state.rpc(masked)
-				targetPlayer.set_masked_state.rpc(!masked)
+		var shouldInteract = (Input.is_action_just_pressed("interact") || mouseDoubleClick)
+		if shouldInteract:
+			if has_mask() && giveTarget && !giveTarget.has_mask():
+				set_masked_state.rpc(false, true, true)
+				giveTarget.set_masked_state.rpc(true, true, true)
+			elif !has_mask() && stealTarget && stealTarget.has_mask():
+				set_masked_state.rpc(true, false, true)
+				stealTarget.set_masked_state.rpc(false, false, true)
 		
 	var velocity3d = Vector3(moveVelocity.x, -moveVelocity.y, 0) 
 	position += velocity3d * delta
@@ -140,11 +147,15 @@ func pick_current_target():
 		var overlappingPlayer = area.get_parent() as Player
 		var distanceToPlayer = position.distance_squared_to(overlappingPlayer.position)
 		
-		if (distanceToPlayer < closestDistance):
+		if get_crush_player() == overlappingPlayer:
+			giveTarget = overlappingPlayer
+		elif (distanceToPlayer < closestDistance):
 			closestPlayer = overlappingPlayer
 			closestDistance = distanceToPlayer
 			
-	targetPlayer = closestPlayer
+	stealTarget = closestPlayer
+	
+	
 	
 @rpc
 func update_network_state(newVelocity : Vector2, newPosition : Vector3, newOxygen, newVictory):
@@ -154,8 +165,17 @@ func update_network_state(newVelocity : Vector2, newPosition : Vector3, newOxyge
 	survived = newVictory
 	
 @rpc("any_peer", "call_local")
-func set_masked_state(active : bool):
+func set_masked_state(active : bool, willing : bool, emitEvent : bool):
 	diver.mask.set_visible(active)
+	
+	if !willing && !active && is_multiplayer_authority():
+		moveVelocity = Vector2.ZERO
+	
+	if emitEvent && !active:
+		if willing:
+			gave_away_mask.emit()
+		else:
+			lost_mask.emit()
 	
 @rpc("any_peer", "call_local")
 func set_crush_id(crush):

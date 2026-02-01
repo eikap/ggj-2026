@@ -27,7 +27,7 @@ func start_game():
 		var playerID = Network.players.keys()[i]
 		var player : Player = Network.players[playerID].node
 		
-		player.set_masked_state.rpc(true)
+		player.set_masked_state.rpc(true, true, false)
 	
 	for i in range(0, numPlayers):
 		var playerID = Network.players.keys()[i]
