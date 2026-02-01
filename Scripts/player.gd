@@ -187,6 +187,10 @@ func set_masked_state(active : bool, willing : bool, emitEvent : bool):
 func set_crush_id(crush):
 	crushID = crush
 	
+@rpc("any_peer", "call_local")
+func assign_color(randomNumber : int):
+	diver.set_material_type(randomNumber)
+	
 func get_crush_player():
 	if(!crushID):
 		return null

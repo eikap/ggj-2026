@@ -34,6 +34,7 @@ func start_game():
 		var player : Player = Network.players[playerID].node
 		
 		player.set_crush_id.rpc(Network.players.keys()[(i + 1) % numPlayers])
+		player.assign_color.rpc(i)
 	
 	# All peers are ready to receive RPCs in this scene.
 	pass
