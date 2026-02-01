@@ -15,8 +15,10 @@ extends Node3D
 
 var moveVelocity : Vector2
 var networkPosition : Vector3
+
 var mousePressed : bool = false
 var mouseDoubleClick : bool = false
+var mouseLastClickTime : int = 0
 
 var oxygen = 100.0
 var survived = false
@@ -110,11 +112,17 @@ func _input(event):
 	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		mousePressed = event.pressed
-		mouseDoubleClick = mouseDoubleClick || event.double_click
 		
-	if event is InputEventScreenTouch:
-		mouseDoubleClick = mouseDoubleClick || event.double_tap
-	
+		if mousePressed:
+			var currTime = Time.get_ticks_msec()
+			var timeSinceLastClick = currTime - mouseLastClickTime
+			
+			if timeSinceLastClick < 300:
+				mouseDoubleClick = true
+				mouseLastClickTime = 0
+			else:
+				mouseLastClickTime = Time.get_ticks_msec()
+			
 	#if event is InputEventMouseButton || event is InputEventMouseMotion:
 	#	mousePos = event.position
 	
