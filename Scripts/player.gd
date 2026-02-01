@@ -99,7 +99,7 @@ func _process(delta):
 		mouseDoubleClick = false
 		rotation.y = -velocity3d.x * (PI / 5)
 		
-		#diver.animPlayer.speed_scale = max(velocity3d.length(), 0.8)
+		diver.animPlayer.speed_scale = max(velocity3d.length(), 0.8)
 		
 		#var weight = velocity3d.length()
 		#if(weight > 0):
