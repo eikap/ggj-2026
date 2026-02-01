@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" format=3 uid="uid://b5f5w4h2wpwy1"]
+[gd_resource type="VisualShader" format=3 uid="uid://dljlpxm3d5aci"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ork78"]
 frequency = 0.002
