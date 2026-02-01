@@ -6,6 +6,8 @@ extends Node3D
 @export var acceleration = 3
 @export var rotationSnappiness = 3
 @export var networkCorrectionSpeed = 1
+@export var movementRangeX = 3
+@export var movementFloorY = 0
 
 @export_category("Gameplay Features")
 @export var diver : Diver
@@ -85,6 +87,10 @@ func _process(delta):
 		
 	var velocity3d = Vector3(moveVelocity.x, -moveVelocity.y, 0) 
 	position += velocity3d * delta
+	
+	position.x = clamp(position.x, -movementRangeX, movementRangeX)
+	position.y = max(position.y, movementFloorY)
+	#position = clamp(position, Vector3(-movementRangeX, movementFloorY, 0), Vector3(movementRangeX, movementFloorY, 0))
 	
 	mouseDoubleClick = false
 	
