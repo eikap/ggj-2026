@@ -60,7 +60,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-theme_override_fonts/font = ExtResource("3_am8ls")
 text = "Join Game"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/JoinButton" unique_id=2147473303]
