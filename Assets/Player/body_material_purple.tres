@@ -2,4 +2,5 @@
 
 [resource]
 albedo_color = Color(0.5568628, 0.27058825, 1, 1)
+disable_receive_shadows = true
 stencil_flags = 2
