@@ -20,6 +20,14 @@ gameScene = "res://Scenes/Game.tscn"
 playerNameUIElement = ExtResource("2_wnqcy")
 playerNames = "res://Assets/player_names.json"
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1868767040]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078329615, 0.106991254, 0.13757586, 1)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1962825021]
 anchors_preset = 15
 anchor_right = 1.0
