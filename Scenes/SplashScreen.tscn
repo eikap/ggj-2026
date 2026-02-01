@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dheg3r02di06i"]
+
+[node name="SplashScreen" type="Node2D" unique_id=1043899968]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1128041931]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.24719092, 0.49477315, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect" unique_id=1962168569]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect" unique_id=985462441]
+root_node = NodePath("../..")
