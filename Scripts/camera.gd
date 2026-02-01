@@ -6,7 +6,7 @@ func _process(delta):
 	if OS.has_feature("dedicated_server"):
 		return
 	
-	var localPlayer : Player = Network.players[multiplayer.get_unique_id()].node
+	var localPlayer : Player = Network.get_local_player_node()
 	
 	if(!localPlayer):
 		return

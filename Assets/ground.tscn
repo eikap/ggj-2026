@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bpvflhf8jd8pb"]
+
+[ext_resource type="PackedScene" uid="uid://cg3k08tqlivq3" path="res://Assets/ground.fbx" id="1_v5ud0"]
+[ext_resource type="Material" uid="uid://clnhsd5x67lm6" path="res://Assets/ground.tres" id="2_cuc7h"]
+
+[node name="ground" unique_id=1305247960 instance=ExtResource("1_v5ud0")]
+
+[node name="Plane" parent="." index="0" unique_id=1410450619]
+surface_material_override/0 = ExtResource("2_cuc7h")

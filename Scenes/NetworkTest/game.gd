@@ -11,7 +11,6 @@ func _enter_tree():
 		Network.players[playerID].node = player
 		
 		add_child(player)
-		
 
 func _ready():
 	# Preconfigure game.
@@ -21,10 +20,21 @@ func _ready():
 
 # Called only on the server.
 func start_game():
-	var firstPlayerID = Network.players.keys()[0]
-	var firstPlayer : Player = Network.players[firstPlayerID].node
+	var numPlayers = Network.players.size()
+	var maskedPlayers = max(1, numPlayers - 2)
 	
-	firstPlayer.set_masked_state.rpc(true)
+	for i in range(0, maskedPlayers):
+		var playerID = Network.players.keys()[i]
+		var player : Player = Network.players[playerID].node
+		
+		player.set_masked_state.rpc(true, true, false)
+	
+	for i in range(0, numPlayers):
+		var playerID = Network.players.keys()[i]
+		var player : Player = Network.players[playerID].node
+		
+		player.set_crush_id.rpc(Network.players.keys()[(i + 1) % numPlayers])
+		player.assign_color.rpc(i)
 	
 	# All peers are ready to receive RPCs in this scene.
 	pass

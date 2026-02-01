@@ -1,0 +1,61 @@
+[gd_resource type="VisualShader" format=3 uid="uid://b5f5w4h2wpwy1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ork78"]
+frequency = 0.002
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ork78"]
+height = 1280
+noise = SubResource("FastNoiseLite_ork78")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_fnhhe"]
+output_port_for_preview = 0
+texture = SubResource("NoiseTexture2D_ork78")
+
+[sub_resource type="VisualShaderNodeDotProduct" id="VisualShaderNodeDotProduct_ork78"]
+output_port_for_preview = 0
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.299, 0.587, 0.114)]
+
+[sub_resource type="Gradient" id="Gradient_ork78"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.4800995, 1)
+colors = PackedColorArray(0.19352868, 0.21592581, 0.44653285, 1, 0.54359895, 0.63106513, 0.92142624, 1, 0.5819186, 0.98567194, 0.9999996, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fnhhe"]
+gradient = SubResource("Gradient_ork78")
+width = 128
+height = 1080
+fill_from = Vector2(0.517094, 1)
+fill_to = Vector2(0.491453, 0.0064102565)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ork78"]
+texture = SubResource("GradientTexture2D_fnhhe")
+
+[sub_resource type="Gradient" id="Gradient_fnhhe"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ho3nd"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t7ybg"]
+noise = SubResource("FastNoiseLite_ho3nd")
+color_ramp = SubResource("Gradient_fnhhe")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_sbpm6"]
+speed_scale = 7.5
+frame_0/texture = SubResource("NoiseTexture2D_t7ybg")
+frame_0/duration = 16.0
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_qeoc4"]
+output_port_for_preview = 0
+expanded_output_ports = [0]
+texture = SubResource("AnimatedTexture_sbpm6")
+
+[resource]
+nodes/fragment/0/position = Vector2(890, 140)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_fnhhe")
+nodes/fragment/3/position = Vector2(-40, 170)
+nodes/fragment/4/node = SubResource("VisualShaderNodeDotProduct_ork78")
+nodes/fragment/4/position = Vector2(280, 230)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_ork78")
+nodes/fragment/5/position = Vector2(610, 140)
+nodes/fragment/6/node = SubResource("VisualShaderNodeTexture_qeoc4")
+nodes/fragment/6/position = Vector2(400, -90)
+nodes/fragment/connections = PackedInt32Array(5, 0, 0, 0, 3, 0, 4, 0, 3, 0, 6, 0)

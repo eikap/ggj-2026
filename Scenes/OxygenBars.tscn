@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://convxv2ryubc4"]
 
 [ext_resource type="Texture2D" uid="uid://bkm1i5qqwolnt" path="res://UI/Elements/HealthBar_back.png" id="1_f8hyu"]
+[ext_resource type="Script" uid="uid://bdshp030nlxxo" path="res://Scripts/hud_ui.gd" id="1_o5kc5"]
 [ext_resource type="Texture2D" uid="uid://cebxogncu2lcf" path="res://UI/Elements/HealthBar_Over_O2.png" id="2_o5kc5"]
 [ext_resource type="Texture2D" uid="uid://bxjs77ej02tq3" path="res://UI/Elements/HealthBar_Fill_hp.png" id="3_mtcul"]
 [ext_resource type="Texture2D" uid="uid://bx4dvpm3j3kui" path="res://UI/Elements/HealthBar_Over_Crush.png" id="4_ynt6e"]
 [ext_resource type="Texture2D" uid="uid://ddpg10n6bblp2" path="res://UI/Elements/HealthBar_fill.png" id="5_gfr6h"]
 
-[node name="CanvasLayer" type="CanvasLayer" unique_id=1113027098]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1113027098 node_paths=PackedStringArray("localOxygen", "crushOxygen")]
+script = ExtResource("1_o5kc5")
+localOxygen = NodePath("TextureProgressBar")
+crushOxygen = NodePath("TextureProgressBar2")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=2010868529]
 anchors_preset = 6
