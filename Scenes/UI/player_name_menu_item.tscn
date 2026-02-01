@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://5qs4qorywhm4" path="res://UI/Elements/playerIcon.png" id="2_ieqrl"]
 [ext_resource type="FontFile" uid="uid://wv6vcqmrs2ms" path="res://UI/Font/Finalnew.ttf" id="3_cym8l"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ieqrl"]
+font_size = 9
+
 [node name="Player Name" type="HBoxContainer" unique_id=1269626086]
 script = ExtResource("1_1ja1o")
 
@@ -25,3 +28,14 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_cym8l")
 theme_override_font_sizes/font_size = 18
 text = "Player Name"
+
+[node name="PlayerStatus" type="Label" parent="Player Name" unique_id=2067932612]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 17.0
+offset_right = 100.0
+offset_bottom = 35.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_cym8l")
+theme_override_font_sizes/font_size = 18
+label_settings = SubResource("LabelSettings_ieqrl")

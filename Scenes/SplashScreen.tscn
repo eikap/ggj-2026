@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://f57e13bdevxp"]
+[gd_scene format=3 uid="uid://pdawgtxn4b1g"]
 
 [ext_resource type="Shader" path="res://Scenes/slightwatershimmer.gdshader" id="1_7m5qv"]
 [ext_resource type="Script" uid="uid://du0gsa0n3ourh" path="res://Scenes/splash_screen.gd" id="1_ki8ww"]

@@ -19,6 +19,9 @@ func setPlayerName(newName: String) -> void:
 			playerNameLabel.text = newName + " (You)"
 		else:
 			playerNameLabel.text = newName
+			
+func setPlayerStatus(newStatus: String) -> void:
+	$"Player Name/PlayerStatus".text = newStatus
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

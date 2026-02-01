@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Divers"
-run/main_scene="uid://f57e13bdevxp"
+run/main_scene="uid://pdawgtxn4b1g"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://5qs4qorywhm4"
 

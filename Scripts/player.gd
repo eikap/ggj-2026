@@ -32,6 +32,11 @@ var stealTarget : Player
 var giveTarget : Player
 var crushID : int
 
+static var PlayerStateString : Array[String] = [
+	"Alive",
+	"Drowned",
+	"Crush Drowned",
+	"Survived"]
 enum PlayerState {Alive, Drowned, Crush_Drowned, Survived}
 var playerState : PlayerState = PlayerState.Alive
 

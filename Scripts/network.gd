@@ -23,7 +23,7 @@ var player_info = {"name": "Name", "node" : null}
 
 var players_loaded = 0
 
-
+static var past_round_info : Array
 
 func _ready():
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -75,6 +75,18 @@ func load_game(game_scene_path):
 # do Lobby.load_game.rpc(filepath)
 @rpc("any_peer", "call_local", "reliable")
 func end_game(lobby_scene_path):
+	past_round_info.clear()
+	
+	for player in players:
+		var playerNode : Player = players[player].node
+		var playerInfo = {}
+		
+		if (!playerNode): continue
+		
+		playerInfo.name = players[player].name
+		playerInfo.state = playerNode.playerState
+		past_round_info.append(playerInfo)
+	
 	if !OS.has_feature("dedicated_server"):
 		remove_multiplayer_peer()
 
@@ -104,13 +116,9 @@ func _register_player(new_player_info):
 	player_connected.emit(new_player_id, new_player_info)
 
 
-func _on_player_disconnected(id):
-	if(players[id].has("node")):
-		if(players[id].node):
-			players[id].node.queue_free()
-		
-	players.erase(id)
+func _on_player_disconnected(id):	
 	player_disconnected.emit(id)
+	players.erase(id)
 
 
 func _on_connected_ok():

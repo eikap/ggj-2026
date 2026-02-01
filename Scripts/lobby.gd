@@ -22,6 +22,16 @@ func _enter_tree():
 	Network.player_disconnected.connect(player_disconnected)
 	load_player_names()
 	
+	if (Network.past_round_info.size() > 0):
+		
+		for roundinfo in Network.past_round_info:
+			var playerUINode = playerNameUIElement.instantiate()
+			playerUINode.playerName = roundinfo.name
+			playerUINode.setPlayerStatus(Player.PlayerStateString[roundinfo.state])
+			$VBoxContainer/PlayerList/PlayerListContainer.add_child(playerUINode)
+		
+		statusText.text = Network.past_round_info[0].name
+	
 	if OS.has_feature("dedicated_server"):
 		print("Server starting...")
 		on_host_clicked()
@@ -49,7 +59,12 @@ func on_join_clicked():
 	if(result != OK):
 		statusText.text = "Failed!"
 		return
-		
+	
+	var playerList = $VBoxContainer/PlayerList/PlayerListContainer
+	for n in playerList.get_children():
+		playerList.remove_child(n)
+		n.queue_free() 
+	
 	startButton.set_visible(false)
 	joinButton.set_visible(false)
 	
@@ -81,11 +96,11 @@ func player_connected(_peer_id, player_info):
 	
 	update_lobby_status()
 
-func player_disconnected(_peer_id, player_info):
+func player_disconnected(_peer_id):
 	var playerUINodes = $VBoxContainer/PlayerList/PlayerListContainer.get_children()
 	
 	for playerUINode in playerUINodes:
-		if (playerUINode.playerName == player_info.name):
+		if (playerUINode.playerName == Network.players[_peer_id].name):
 			$VBoxContainer/PlayerList/PlayerListContainer.remove_child(playerUINode)
 			playerUINode.queue_free()
 		
