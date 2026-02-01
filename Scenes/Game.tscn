@@ -386,7 +386,7 @@ surface_material_override/26 = ExtResource("15_alh3a")
 surface_material_override/27 = ExtResource("15_alh3a")
 
 [node name="Kelp" type="MeshInstance3D" parent="Kelp4" unique_id=1447245200]
-transform = Transform3D(-0.1688969, 0, 1.1651478, 0, 1.1773256, 0, -1.1651478, 0, -0.1688969, 137.00864, -4.0250454, 2.9671783)
+transform = Transform3D(-0.564496, 0, 1.0331697, 0, 1.1773256, 0, -1.0331697, 0, -0.564496, 166.07043, -13.304598, -0.25990295)
 material_override = ExtResource("15_alh3a")
 mesh = ExtResource("14_acvyw")
 surface_material_override/0 = ExtResource("15_alh3a")
