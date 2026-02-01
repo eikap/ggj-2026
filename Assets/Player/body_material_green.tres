@@ -1,6 +1,8 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://dcmcmr4e38kx5"]
 
 [resource]
-albedo_color = Color(0.12156863, 0.7019608, 0.17254902, 1)
+albedo_color = Color(0.2247915, 0.6951198, 5.7756904e-07, 1)
+emission_enabled = true
+emission = Color(0, 0.7019608, 0, 1)
 disable_receive_shadows = true
 stencil_flags = 2

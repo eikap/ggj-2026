@@ -2,5 +2,7 @@
 
 [resource]
 albedo_color = Color(0.8862745, 0.74509805, 0.043137256, 1)
+emission_enabled = true
+emission = Color(0.9490196, 0.74509805, 0.08235294, 1)
 disable_receive_shadows = true
 stencil_flags = 2
