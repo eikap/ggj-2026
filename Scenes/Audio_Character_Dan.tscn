@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://caclm1kldtm51" path="res://Scripts/audio_character_Logic.gd" id="1_mq5ws"]
 [ext_resource type="AudioStream" uid="uid://5dcv3njnhc26" path="res://Audio/VOX/GGJ_UnderWaterSurvivalLove_VOX_Drowning_Dan.mp3" id="2_mq5ws"]
 [ext_resource type="AudioStream" uid="uid://de614i3ej4xb0" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Bubbles_02.mp3" id="3_cq8ew"]
+[ext_resource type="AudioStream" uid="uid://ym2yov5s7c6x" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Mask_Pass.mp3" id="4_u3yk8"]
+[ext_resource type="AudioStream" uid="uid://b2i17y5sivxhg" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Mask_Steal.mp3" id="5_edhat"]
 
 [node name="AudioCharacterDan" type="AudioStreamPlayer2D" unique_id=320430587]
 script = ExtResource("1_mq5ws")
@@ -26,3 +28,11 @@ parameters/looping = true
 stream = ExtResource("3_cq8ew")
 bus = &"SFX"
 parameters/looping = true
+
+[node name="Audio_Mask_Pass" type="AudioStreamPlayer2D" parent="." unique_id=817831264]
+stream = ExtResource("4_u3yk8")
+bus = &"SFX"
+
+[node name="Audio_Mask_Steal" type="AudioStreamPlayer2D" parent="." unique_id=519442241]
+stream = ExtResource("5_edhat")
+bus = &"SFX"
