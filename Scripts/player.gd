@@ -13,7 +13,7 @@ extends Node3D
 @export var diver : Diver
 @export var detectionArea : Area3D
 @export var oxygenLabel : Label3D
-@export var oxygenDepletionRate = 8
+@export var oxygenDepletionRate = 12
 
 signal gave_away_mask
 signal lost_mask
