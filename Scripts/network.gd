@@ -60,6 +60,7 @@ func create_game():
 
 
 func remove_multiplayer_peer():
+	multiplayer.multiplayer_peer.close()
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	players.clear()
 
@@ -69,7 +70,15 @@ func remove_multiplayer_peer():
 @rpc("any_peer", "call_local", "reliable")
 func load_game(game_scene_path):
 	get_tree().change_scene_to_file(game_scene_path)
+	
+# When the server decides to start the game from a UI scene,
+# do Lobby.load_game.rpc(filepath)
+@rpc("any_peer", "call_local", "reliable")
+func end_game(lobby_scene_path):
+	if !OS.has_feature("dedicated_server"):
+		remove_multiplayer_peer()
 
+	get_tree().change_scene_to_file(lobby_scene_path)
 
 # Every peer will call this when they have loaded the game scene.
 @rpc("any_peer", "call_local", "reliable")

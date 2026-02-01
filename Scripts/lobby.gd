@@ -19,6 +19,7 @@ const min_num_players : int = 2
 
 func _enter_tree():
 	Network.player_connected.connect(player_connected)
+	Network.player_disconnected.connect(player_disconnected)
 	load_player_names()
 	
 	if OS.has_feature("dedicated_server"):
@@ -56,12 +57,9 @@ func on_start_clicked():
 	Network.load_game.rpc(gameScene)
 	return
 
-func player_connected(_peer_id, player_info):
-	var playerUINode = playerNameUIElement.instantiate()
-	playerUINode.isLocalPlayer = _peer_id == multiplayer.get_unique_id()
-	playerUINode.playerName = player_info.name
-	$VBoxContainer/PlayerList/PlayerListContainer.add_child(playerUINode)
-	
+func update_lobby_status():
+	if (!is_multiplayer_authority()):
+		return
 	var playerNum = Network.players.size()
 	var readyToGo = playerNum >= min_num_players
 	
@@ -74,8 +72,24 @@ func player_connected(_peer_id, player_info):
 			status,
 			readyToGo
 		)
-	return
 
+func player_connected(_peer_id, player_info):
+	var playerUINode = playerNameUIElement.instantiate()
+	playerUINode.isLocalPlayer = _peer_id == multiplayer.get_unique_id()
+	playerUINode.playerName = player_info.name
+	$VBoxContainer/PlayerList/PlayerListContainer.add_child(playerUINode)
+	
+	update_lobby_status()
+
+func player_disconnected(_peer_id, player_info):
+	var playerUINodes = $VBoxContainer/PlayerList/PlayerListContainer.get_children()
+	
+	for playerUINode in playerUINodes:
+		if (playerUINode.playerName == player_info.name):
+			$VBoxContainer/PlayerList/PlayerListContainer.remove_child(playerUINode)
+			playerUINode.queue_free()
+		
+	update_lobby_status()
 
 func _on_fullscreen_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:

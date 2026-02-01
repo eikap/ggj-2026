@@ -26,7 +26,7 @@ oxygenLabel = NodePath("Label3D")
 [node name="DiverRoot" type="Node3D" parent="." unique_id=1461022868]
 
 [node name="diver" parent="DiverRoot" unique_id=297256398 instance=ExtResource("2_kyqiw")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1.0793637, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1.0793637, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1426452276]
 visible = false

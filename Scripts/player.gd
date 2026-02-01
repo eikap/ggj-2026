@@ -13,7 +13,7 @@ extends Node3D
 @export var diver : Diver
 @export var detectionArea : Area3D
 @export var oxygenLabel : Label3D
-@export var oxygenDepletionRate = 12
+@export var oxygenDepletionRate = 9
 
 signal gave_away_mask
 signal lost_mask
@@ -91,6 +91,8 @@ func _process(delta):
 		#position = clamp(position, Vector3(-movementRangeX, movementFloorY, 0), Vector3(movementRangeX, movementFloorY, 0))
 		
 		mouseDoubleClick = false
+		rotation.y = -velocity3d.x * (PI / 5)
+		
 		
 		#var weight = velocity3d.length()
 		#if(weight > 0):
@@ -107,6 +109,7 @@ func _process(delta):
 			
 			if(localPlayer && localPlayer.crushID == get_multiplayer_authority()):
 				oxygenLabel.text = "[<3] %s [<3]\nOxygen: %d%%" % [name,oxygen]
+				oxygenLabel.modulate = Color("#03fce8")
 			else:
 				oxygenLabel.text = "%s\nOxygen: %d%%" % [name,oxygen]
 		
