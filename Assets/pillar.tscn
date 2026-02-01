@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bte2s6iabdl6n"]
+
+[ext_resource type="ArrayMesh" uid="uid://bqsynn0kuvjed" path="res://Assets/pillar.obj" id="1_5vlet"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71cva"]
+albedo_color = Color(0.12941177, 0.07450981, 0.23921569, 1)
+disable_receive_shadows = true
+
+[node name="Pillar" type="Node3D" unique_id=908959435]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=301731148]
+cast_shadow = 0
+mesh = ExtResource("1_5vlet")
+surface_material_override/0 = SubResource("StandardMaterial3D_71cva")
