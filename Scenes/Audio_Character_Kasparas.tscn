@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://caclm1kldtm51" path="res://Scripts/audio_character_Logic.gd" id="1_5mwcl"]
 [ext_resource type="AudioStream" uid="uid://bfhv4wsup7vp5" path="res://Audio/VOX/GGJ_UnderWaterSurvivalLove_VOX_Drowning_Kasparas.mp3" id="2_5mwcl"]
 [ext_resource type="AudioStream" uid="uid://dne6o4p2v16f3" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Bubbles_05.mp3" id="3_c1jjw"]
+[ext_resource type="AudioStream" uid="uid://ym2yov5s7c6x" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Mask_Pass.mp3" id="4_m20vc"]
+[ext_resource type="AudioStream" uid="uid://b2i17y5sivxhg" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Mask_Steal.mp3" id="5_laav5"]
 
-[node name="AudioCharacterDan" type="AudioStreamPlayer2D" unique_id=320430587]
+[node name="AudioCharacterKasparas" type="AudioStreamPlayer2D" unique_id=320430587]
 script = ExtResource("1_5mwcl")
 
 [node name="Oxygen level test" type="VSlider" parent="." unique_id=1456535395]
@@ -26,3 +28,11 @@ parameters/looping = true
 stream = ExtResource("3_c1jjw")
 bus = &"SFX"
 parameters/looping = true
+
+[node name="Audio_Mask_Pass" type="AudioStreamPlayer2D" parent="." unique_id=1800305512]
+stream = ExtResource("4_m20vc")
+bus = &"SFX"
+
+[node name="Audio_Mask_Steal" type="AudioStreamPlayer2D" parent="." unique_id=1492300226]
+stream = ExtResource("5_laav5")
+bus = &"SFX"
