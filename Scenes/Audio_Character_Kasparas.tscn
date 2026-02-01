@@ -2,9 +2,33 @@
 
 [ext_resource type="Script" uid="uid://caclm1kldtm51" path="res://Scripts/audio_character_Logic.gd" id="1_5mwcl"]
 [ext_resource type="AudioStream" uid="uid://bfhv4wsup7vp5" path="res://Audio/VOX/GGJ_UnderWaterSurvivalLove_VOX_Drowning_Kasparas.mp3" id="2_5mwcl"]
+[ext_resource type="AudioStream" uid="uid://5dcv3njnhc26" path="res://Audio/VOX/GGJ_UnderWaterSurvivalLove_VOX_Drowning_Dan.mp3" id="2_ae8q6"]
 [ext_resource type="AudioStream" uid="uid://dne6o4p2v16f3" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Bubbles_05.mp3" id="3_c1jjw"]
+[ext_resource type="AudioStream" uid="uid://b5qefvxx37rcm" path="res://Audio/VOX/GGJ_UnderWaterSurvivalLove_VOX_Drowning_Felix.mp3" id="3_miprv"]
 [ext_resource type="AudioStream" uid="uid://ym2yov5s7c6x" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Mask_Pass.mp3" id="4_m20vc"]
 [ext_resource type="AudioStream" uid="uid://b2i17y5sivxhg" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Mask_Steal.mp3" id="5_laav5"]
+[ext_resource type="AudioStream" uid="uid://dlt6lmoth7qbw" path="res://Audio/VOX/GGJ_UnderWaterSurvivalLove_VOX_Drowning_Oceane.mp3" id="5_sqvyf"]
+[ext_resource type="AudioStream" uid="uid://nuysp474rr8l" path="res://Audio/VOX/GGJ_UnderWaterSurvivalLove_VOX_Drowning_Simon.mp3" id="6_mnky2"]
+[ext_resource type="AudioStream" uid="uid://bls3rbk5shgfw" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Bubbles_01.mp3" id="7_gja63"]
+[ext_resource type="AudioStream" uid="uid://de614i3ej4xb0" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Bubbles_02.mp3" id="8_ajmfv"]
+[ext_resource type="AudioStream" uid="uid://bdp51y3qu5xiy" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Bubbles_03.mp3" id="9_p7ppo"]
+[ext_resource type="AudioStream" uid="uid://b0qnvwclwd3jl" path="res://Audio/SFX/GGJ_UnderWaterSurvivalLove_Bubbles_04.mp3" id="10_apqfn"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gja63"]
+streams_count = 5
+stream_0/stream = ExtResource("2_ae8q6")
+stream_1/stream = ExtResource("3_miprv")
+stream_2/stream = ExtResource("2_5mwcl")
+stream_3/stream = ExtResource("5_sqvyf")
+stream_4/stream = ExtResource("6_mnky2")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l1m3r"]
+streams_count = 5
+stream_0/stream = ExtResource("7_gja63")
+stream_1/stream = ExtResource("8_ajmfv")
+stream_2/stream = ExtResource("9_p7ppo")
+stream_3/stream = ExtResource("10_apqfn")
+stream_4/stream = ExtResource("3_c1jjw")
 
 [node name="AudioCharacterKasparas" type="AudioStreamPlayer2D" unique_id=320430587]
 script = ExtResource("1_5mwcl")
@@ -20,14 +44,12 @@ tick_count = 10
 ticks_on_borders = true
 
 [node name="Audio_Voice" type="AudioStreamPlayer2D" parent="." unique_id=1257038657]
-stream = ExtResource("2_5mwcl")
+stream = SubResource("AudioStreamRandomizer_gja63")
 bus = &"VOX"
-parameters/looping = true
 
 [node name="Audio_Bubbles" type="AudioStreamPlayer2D" parent="." unique_id=652703759]
-stream = ExtResource("3_c1jjw")
+stream = SubResource("AudioStreamRandomizer_l1m3r")
 bus = &"SFX"
-parameters/looping = true
 
 [node name="Audio_Mask_Pass" type="AudioStreamPlayer2D" parent="." unique_id=1800305512]
 stream = ExtResource("4_m20vc")

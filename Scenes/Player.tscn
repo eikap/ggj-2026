@@ -46,5 +46,5 @@ text = "Oxygen: 100%"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1178998291]
 shape = SubResource("SphereShape3D_rpqav")
 
-[node name="AudioCharacterDan" parent="." unique_id=320430587 node_paths=PackedStringArray("player") instance=ExtResource("3_gntrk")]
+[node name="AudioCharacterKasparas" parent="." unique_id=320430587 node_paths=PackedStringArray("player") instance=ExtResource("3_gntrk")]
 player = NodePath("..")
