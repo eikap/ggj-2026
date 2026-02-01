@@ -107,6 +107,7 @@ func _process(delta):
 			
 			if(localPlayer && localPlayer.crushID == get_multiplayer_authority()):
 				oxygenLabel.text = "[<3] %s [<3]\nOxygen: %d%%" % [name,oxygen]
+				oxygenLabel.modulate = Color("#f600b9")
 			else:
 				oxygenLabel.text = "%s\nOxygen: %d%%" % [name,oxygen]
 		
