@@ -353,7 +353,7 @@ surface_material_override/26 = ExtResource("15_alh3a")
 surface_material_override/27 = ExtResource("15_alh3a")
 
 [node name="Kelp3" type="MeshInstance3D" parent="Kelp4" unique_id=1378088972]
-transform = Transform3D(0.67732555, 0, 0, 0, 0.67732555, 0, 0, 0, 0.67732555, 56.271626, 2.309843, 22.728508)
+transform = Transform3D(0.36296913, 0, 0.57185954, 0, 0.67732555, 0, -0.57185954, 0, 0.36296913, 56.271626, 2.309843, 22.728508)
 material_override = ExtResource("15_alh3a")
 mesh = ExtResource("14_acvyw")
 surface_material_override/0 = ExtResource("15_alh3a")
@@ -386,7 +386,7 @@ surface_material_override/26 = ExtResource("15_alh3a")
 surface_material_override/27 = ExtResource("15_alh3a")
 
 [node name="Kelp" type="MeshInstance3D" parent="Kelp4" unique_id=1447245200]
-transform = Transform3D(1.1773256, 0, 0, 0, 1.1773256, 0, 0, 0, 1.1773256, 137.00864, -4.0250463, 2.9671783)
+transform = Transform3D(-0.1688969, 0, 1.1651478, 0, 1.1773256, 0, -1.1651478, 0, -0.1688969, 137.00864, -4.0250454, 2.9671783)
 material_override = ExtResource("15_alh3a")
 mesh = ExtResource("14_acvyw")
 surface_material_override/0 = ExtResource("15_alh3a")
@@ -419,7 +419,7 @@ surface_material_override/26 = ExtResource("15_alh3a")
 surface_material_override/27 = ExtResource("15_alh3a")
 
 [node name="Kelp5" type="MeshInstance3D" parent="Kelp4" unique_id=1003938519]
-transform = Transform3D(0.9317362, 0, 0, 0, 0.9317362, 0, 0, 0, 0.9317362, 83.087166, -17.54078, -38.210068)
+transform = Transform3D(-0.65652174, 0, 0.6611442, 0, 0.9317362, 0, -0.6611442, 0, -0.65652174, 83.087166, -17.540777, -38.210068)
 material_override = ExtResource("15_alh3a")
 mesh = ExtResource("14_acvyw")
 surface_material_override/0 = ExtResource("15_alh3a")
