@@ -56,19 +56,33 @@ _data = {
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxpnx"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8wlm"]
+albedo_color = Color(0, 0, 0, 1)
+roughness = 0.8
+disable_receive_shadows = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmsqa"]
+albedo_color = Color(0.9882353, 1, 1, 1)
+emission_enabled = true
+emission = Color(0.7204675, 0.7204675, 0.7204675, 1)
+emission_energy_multiplier = 2.29
+rim_enabled = true
+rim = 0.52
+disable_receive_shadows = true
+
 [node name="diver" unique_id=620661412 node_paths=PackedStringArray("mask") instance=ExtResource("1_gi5yp")]
 script = ExtResource("2_gmsqa")
 mask = NodePath("mask")
 
-[node name="body" parent="." index="0" unique_id=672049464]
+[node name="body" parent="." index="0" unique_id=1749534117]
 material_override = ExtResource("2_n8wlm")
 surface_material_override/0 = ExtResource("2_n8wlm")
 
-[node name="arms" parent="." index="1" unique_id=1514957666]
+[node name="arms" parent="." index="1" unique_id=1525354210]
 material_override = ExtResource("3_gmsqa")
 surface_material_override/0 = ExtResource("2_n8wlm")
 
-[node name="r_leg" parent="." index="2" unique_id=666211622]
+[node name="r_leg" parent="." index="2" unique_id=934203323]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.17000507, 1.0939391, 0.03338457)
 material_override = ExtResource("2_n8wlm")
 
@@ -77,13 +91,14 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_8peud")
 autoplay = &"RESET"
 
-[node name="l_leg" parent="." index="3" unique_id=530297413]
+[node name="l_leg" parent="." index="3" unique_id=1651860767]
 transform = Transform3D(1, 0, 0, 0, 0.9563047, -0.29237166, 0, 0.29237166, 0.9563047, 0.16762425, 1.0793327, 0.04141904)
 material_override = ExtResource("2_n8wlm")
 
-[node name="googles" parent="." index="4" unique_id=1104027529]
+[node name="googles" parent="." index="4" unique_id=519192193]
 material_override = ExtResource("3_gmsqa")
 surface_material_override/0 = SubResource("StandardMaterial3D_vxpnx")
 
-[node name="mask" parent="." index="5" unique_id=470435628]
-visible = false
+[node name="mask" parent="." index="5" unique_id=477931628]
+surface_material_override/0 = SubResource("StandardMaterial3D_n8wlm")
+surface_material_override/1 = SubResource("StandardMaterial3D_gmsqa")
