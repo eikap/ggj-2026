@@ -21,7 +21,7 @@ func _ready():
 # Called only on the server.
 func start_game():
 	var numPlayers = Network.players.size()
-	var maskedPlayers = 1 #max(1, numPlayers - 2)
+	var maskedPlayers = floor(float(numPlayers) / 2.0) #max(1, numPlayers - 2)
 	
 	for i in range(0, maskedPlayers):
 		var playerID = Network.players.keys()[i]
