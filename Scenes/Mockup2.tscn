@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://pxatgaj3ocav"]
+
+[ext_resource type="ArrayMesh" uid="uid://otguk2hq7oe1" path="res://FelixTest/level.obj" id="1_ls464"]
+[ext_resource type="PackedScene" uid="uid://b2ut7aqnekc43" path="res://Assets/Player/diver_player.tscn" id="2_jxqy0"]
+[ext_resource type="PackedScene" uid="uid://bpvflhf8jd8pb" path="res://Assets/ground.tscn" id="3_hrf7q"]
+[ext_resource type="PackedScene" uid="uid://o8qdplpj7rlf" path="res://Assets/Player/diver_player_cyan.tscn" id="3_vn1c7"]
+[ext_resource type="PackedScene" uid="uid://ndj40amwse4l" path="res://Assets/Player/diver_player_green.tscn" id="4_ka6qk"]
+[ext_resource type="PackedScene" uid="uid://cjhi4ebxs1wu7" path="res://Assets/Player/diver_player_red.tscn" id="5_vwvmi"]
+[ext_resource type="PackedScene" uid="uid://ms2s5afrrh0v" path="res://Assets/Player/diver_player_orange.tscn" id="6_kvr7t"]
+[ext_resource type="PackedScene" uid="uid://cjmwm8yvub0tu" path="res://Assets/Player/diver_player_purple.tscn" id="7_w04j0"]
+[ext_resource type="Texture2D" uid="uid://50mucm3l0a4t" path="res://FelixTest/bubble.png" id="8_f5hud"]
+[ext_resource type="PackedScene" uid="uid://du3bwwi8fhnuc" path="res://Assets/background.tscn" id="8_uqjyl"]
+[ext_resource type="Shader" uid="uid://eu5lxxugrumk" path="res://FelixTest/Underwater.gdshader" id="9_m8waj"]
+[ext_resource type="Texture2D" uid="uid://bay3bscqmo44i" path="res://FelixTest/new_noise_texture_2d.tres" id="10_atypo"]
+[ext_resource type="PackedScene" uid="uid://convxv2ryubc4" path="res://Scenes/OxygenBars.tscn" id="12_hrf7q"]
+[ext_resource type="PackedScene" path="res://Scenes/Audio_MusicPlayer.tscn" id="13_0x7gf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rwx01"]
+size = Vector3(26.302002, 1, 10.48999)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4m57e"]
+
+[sub_resource type="Gradient" id="Gradient_prmik"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uvt45"]
+gradient = SubResource("Gradient_prmik")
+
+[sub_resource type="Curve" id="Curve_84bmv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8eewn"]
+curve = SubResource("Curve_84bmv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_njtd8"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(600, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, -20, 0)
+scale_min = 0.02
+scale_max = 0.04
+scale_curve = SubResource("CurveTexture_8eewn")
+color_ramp = SubResource("GradientTexture1D_uvt45")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kfq5k"]
+shader = ExtResource("9_m8waj")
+shader_parameter/noise_tex = ExtResource("10_atypo")
+shader_parameter/distortion_strength = 0.005
+shader_parameter/wave_speed = 0.2
+shader_parameter/wave_scale = 2.0
+shader_parameter/water_color = Color(0, 0.6651851, 0.7977378, 1)
+shader_parameter/absorption_strength = 0.4
+
+[sub_resource type="Environment" id="Environment_h735e"]
+glow_intensity = 0.0
+glow_bloom = 0.62
+glow_hdr_threshold = 4.0
+glow_hdr_scale = 4.0
+glow_hdr_luminance_cap = 185.6
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.024851736, 0.21418303, 0.5875931, 1)
+fog_light_energy = 0.71
+fog_density = 1.0
+fog_height = 156.54
+volumetric_fog_enabled = true
+
+[node name="3DNode" type="Node3D" unique_id=2126700684]
+
+[node name="diver" parent="." unique_id=620661412 instance=ExtResource("2_jxqy0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -5)
+
+[node name="diver2" parent="." unique_id=297256398 instance=ExtResource("3_vn1c7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0415978, 5.355151, -5)
+
+[node name="diver3" parent="." unique_id=1322435502 instance=ExtResource("4_ka6qk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.099176, 4.6294146, -5)
+
+[node name="diver4" parent="." unique_id=960143857 instance=ExtResource("5_vwvmi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8091868, 7.943354, -5)
+
+[node name="diver5" parent="." unique_id=881339625 instance=ExtResource("6_kvr7t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.913759, 8.888399, -5)
+
+[node name="diver6" parent="." unique_id=1384873607 instance=ExtResource("7_w04j0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1733093, 7.2854404, -5)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=856707682]
+transform = Transform3D(0.98230034, 0.18731274, 0, -0.18731274, 0.98230034, 0, 0, 0, 1, 0, 218.98022, 0)
+light_energy = 2.099
+light_size = 0.76
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1995621811]
+transform = Transform3D(0.8660254, -0.3535534, 0.3535534, 0, 0.7071068, 0.7071068, -0.5, -0.61237246, 0.61237246, 0, 14.812359, 0)
+
+[node name="Background" parent="." unique_id=810297713 instance=ExtResource("8_uqjyl")]
+transform = Transform3D(4.85178, 0, 0, 0, 2.2676096, 0, 0, 0, 1, 0, 70.82555, -20.805397)
+
+[node name="Ground" parent="." unique_id=1305247960 instance=ExtResource("3_hrf7q")]
+transform = Transform3D(8.882007, 0, 0, 0, 5.082472, 0, 0, 0, 8.300349, 0, -0.44900918, 10.976938)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1688260731]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.691135, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1131515849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6776123, 0, -0.86950684)
+shape = SubResource("BoxShape3D_rwx01")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1077830596]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_4m57e")
+
+[node name="Bubbles" type="GPUParticles2D" parent="." unique_id=172147215]
+position = Vector2(120, 431.42)
+scale = Vector2(0.3, 0.3)
+amount = 500
+texture = ExtResource("8_f5hud")
+lifetime = 20.0
+preprocess = 1.0
+process_material = SubResource("ParticleProcessMaterial_njtd8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=694519663]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=432488159]
+material = SubResource("ShaderMaterial_kfq5k")
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer2" parent="." unique_id=1113027098 instance=ExtResource("12_hrf7q")]
+
+[node name="Audio_MusicPlayer" parent="." unique_id=230560115 instance=ExtResource("13_0x7gf")]
+
+[node name="Tub" type="MeshInstance3D" parent="." unique_id=509391517]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.13454056, -5.7416935, 0.01203537)
+mesh = ExtResource("1_ls464")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1536356841]
+transform = Transform3D(0.8660254, -0.3535534, 0.3535534, 0, 0.7071068, 0.7071068, -0.5, -0.61237246, 0.61237246, 0, 14.812359, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=312732175]
+environment = SubResource("Environment_h735e")

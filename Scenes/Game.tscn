@@ -6,14 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://50mucm3l0a4t" path="res://FelixTest/bubble.png" id="4_bf53h"]
 [ext_resource type="Shader" uid="uid://eu5lxxugrumk" path="res://FelixTest/Underwater.gdshader" id="5_71axn"]
 [ext_resource type="Texture2D" uid="uid://bay3bscqmo44i" path="res://FelixTest/new_noise_texture_2d.tres" id="6_dahhg"]
-[ext_resource type="PackedScene" uid="uid://dafoj32escdyx" path="res://Scenes/Audio_MusicPlayer.tscn" id="7_2irst"]
+[ext_resource type="PackedScene" path="res://Scenes/Audio_MusicPlayer.tscn" id="7_2irst"]
 [ext_resource type="PackedScene" uid="uid://convxv2ryubc4" path="res://Scenes/OxygenBars.tscn" id="7_fgofq"]
 [ext_resource type="ArrayMesh" uid="uid://otguk2hq7oe1" path="res://FelixTest/level.obj" id="9_bf53h"]
+[ext_resource type="PackedScene" uid="uid://bpvflhf8jd8pb" path="res://Assets/ground.tscn" id="10_dahhg"]
+[ext_resource type="PackedScene" uid="uid://du3bwwi8fhnuc" path="res://Assets/background.tscn" id="11_3so38"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nm856"]
 size = Vector3(26.302002, 1, 10.48999)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dahhg"]
+albedo_color = Color(0.2627451, 0.70980394, 1, 1)
+disable_receive_shadows = true
+
 [sub_resource type="BoxMesh" id="BoxMesh_nm856"]
+material = SubResource("StandardMaterial3D_dahhg")
 
 [sub_resource type="Gradient" id="Gradient_k01v7"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -49,8 +56,8 @@ shader_parameter/noise_tex = ExtResource("6_dahhg")
 shader_parameter/distortion_strength = 0.005
 shader_parameter/wave_speed = 0.2
 shader_parameter/wave_scale = 2.0
-shader_parameter/water_color = Color(0, 0.6651851, 0.7977378, 1)
-shader_parameter/absorption_strength = 0.4
+shader_parameter/water_color = Color(4.813075e-06, 0.6812677, 0.8132977, 1)
+shader_parameter/absorption_strength = 0.3
 
 [sub_resource type="Environment" id="Environment_bf53h"]
 glow_intensity = 0.0
@@ -82,12 +89,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6776123, 0, -0.86950684)
 shape = SubResource("BoxShape3D_nm856")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=529401730]
-transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, 0.06625365, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_nm856")
 
 [node name="Bubbles" type="GPUParticles2D" parent="." unique_id=559252368]
-position = Vector2(120, 431.42)
-scale = Vector2(0.3, 0.3)
+position = Vector2(390, 431)
+scale = Vector2(0.65999633, 0.3)
 amount = 500
 texture = ExtResource("4_bf53h")
 lifetime = 20.0
@@ -112,9 +119,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Audio_MusicPlayer" parent="." unique_id=230560115 instance=ExtResource("7_2irst")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=222265727]
+[node name="Tub" type="MeshInstance3D" parent="." unique_id=222265727]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.13454056, -5.7416935, 0.01203537)
 mesh = ExtResource("9_bf53h")
+
+[node name="Ground" parent="Tub" unique_id=1305247960 instance=ExtResource("10_dahhg")]
+transform = Transform3D(13.305564, 0, -1.1368684e-13, 0, 5.082472, 0, 0, 0, 11.733872, -1.1026859e-06, 3.2840233, 23.58752)
+
+[node name="Background" parent="Tub" unique_id=810297713 instance=ExtResource("11_3so38")]
+transform = Transform3D(5.7586584, 0, 0, 0, 0.5897243, 0, -5.684342e-14, 0, 1, -1.2814999e-06, 22.990982, -6.161543)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=865134826]
 transform = Transform3D(0.8660254, -0.3535534, 0.3535534, 0, 0.7071068, 0.7071068, -0.5, -0.61237246, 0.61237246, 0, 14.812359, 0)
