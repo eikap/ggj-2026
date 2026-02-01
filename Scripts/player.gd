@@ -44,7 +44,7 @@ func _process(delta):
 	var wasAlive = playerState == PlayerState.Alive
 	
 	var crushPlayer : Player = get_crush_player()
-	if(crushPlayer && crushPlayer.oxygen <= 0):
+	if((survived || oxygen <= 0) && crushPlayer && crushPlayer.oxygen <= 0):
 		if(oxygenLabel):
 			oxygenLabel.text = "Crush Dead!"
 		playerState = PlayerState.Crush_Drowned
@@ -157,6 +157,8 @@ func pick_current_target():
 		
 	var closestPlayer : Player
 	var closestDistance = 1000000
+	
+	giveTarget = null
 		
 	for area in overlaps:
 		if !(area.get_parent() is Player):
@@ -167,7 +169,8 @@ func pick_current_target():
 		var distanceToPlayer = position.distance_squared_to(overlappingPlayer.position)
 		
 		if get_crush_player() == overlappingPlayer:
-			giveTarget = overlappingPlayer
+			if overlappingPlayer.playerState == PlayerState.Alive:
+				giveTarget = overlappingPlayer
 		elif (distanceToPlayer < closestDistance):
 			closestPlayer = overlappingPlayer
 			closestDistance = distanceToPlayer
