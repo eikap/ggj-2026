@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://50mucm3l0a4t" path="res://FelixTest/bubble.png" id="4_bf53h"]
 [ext_resource type="Shader" uid="uid://eu5lxxugrumk" path="res://FelixTest/Underwater.gdshader" id="5_71axn"]
 [ext_resource type="Texture2D" uid="uid://bay3bscqmo44i" path="res://FelixTest/new_noise_texture_2d.tres" id="6_dahhg"]
-[ext_resource type="PackedScene" path="res://Scenes/Audio_MusicPlayer.tscn" id="7_2irst"]
+[ext_resource type="PackedScene" uid="uid://dafoj32escdyx" path="res://Scenes/Audio_MusicPlayer.tscn" id="7_2irst"]
 [ext_resource type="PackedScene" uid="uid://convxv2ryubc4" path="res://Scenes/OxygenBars.tscn" id="7_fgofq"]
 [ext_resource type="ArrayMesh" uid="uid://otguk2hq7oe1" path="res://FelixTest/level.obj" id="9_bf53h"]
 [ext_resource type="PackedScene" uid="uid://bte2s6iabdl6n" path="res://Assets/pillar.tscn" id="10_3so38"]

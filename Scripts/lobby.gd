@@ -18,6 +18,7 @@ var player_name_nouns		: Array[String] = []
 const min_num_players : int = 2
 
 func _enter_tree():
+	Network.game_scene = gameScene
 	Network.player_connected.connect(player_connected)
 	Network.player_disconnected.connect(player_disconnected)
 	load_player_names()
@@ -69,7 +70,7 @@ func on_join_clicked():
 	joinButton.set_visible(false)
 	
 func on_start_clicked():
-	Network.load_game.rpc(gameScene)
+	Network.start_game.rpc_id(0)
 	return
 
 func update_lobby_status():

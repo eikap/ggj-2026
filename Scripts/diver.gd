@@ -10,6 +10,10 @@ extends Node3D
 func set_material_type(randomNumber):
 	if materials.is_empty():
 		return
+		
+	if multiplayer.is_server():
+		# Server cannot assign materials
+		return
 	
 	var idx : int = abs(randomNumber) % materials.size()
 	for node in coloredNodes:

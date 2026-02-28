@@ -9,6 +9,7 @@ signal server_disconnected
 
 const PORT = 7001
 const DEFAULT_SERVER_IP = "wss://ggj26-ws.nas.danieljbradshaw.co.uk" # IPv4 localhost
+const DEFAULT_SERVER_IP_2 = "wss://balticlight.ovh/ggj26-ws" # IPv4 localhost
 const MAX_CONNECTIONS = 20
 
 # This will contain player info for every player,
@@ -24,6 +25,7 @@ var player_info = {"name": "Name", "node" : null}
 var players_loaded = 0
 
 static var past_round_info : Array
+var game_scene : String
 
 func _ready():
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -36,6 +38,9 @@ func _ready():
 func join_game(address = ""):
 	if OS.has_feature("production"):
 		address = DEFAULT_SERVER_IP
+		
+	if OS.has_feature("production2"):
+		address = DEFAULT_SERVER_IP_2
 	
 	var peer = WebSocketMultiplayerPeer.new()
 	var error = peer.create_client(address)
@@ -64,10 +69,20 @@ func remove_multiplayer_peer():
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	players.clear()
 
+@rpc("any_peer", "call_remote", "reliable")
+func start_game():
+	if get_tree().root.name == "Game":
+		return
+		
+	if !multiplayer.is_server():
+		return
+	
+	load_game(game_scene)
+	load_game.rpc(game_scene)
 
 # When the server decides to start the game from a UI scene,
 # do Lobby.load_game.rpc(filepath)
-@rpc("any_peer", "call_local", "reliable")
+@rpc("authority", "call_remote", "reliable")
 func load_game(game_scene_path):
 	get_tree().change_scene_to_file(game_scene_path)
 	
