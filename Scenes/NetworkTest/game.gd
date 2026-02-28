@@ -4,6 +4,7 @@ extends Node3D # Or Node2D.
 @export_file_path("*.tscn") var lobbyScene : String
 
 var game_started : bool = false
+var game_start_timeout = 10.0
 
 func _enter_tree():
 	Network.player_disconnected.connect(player_disconnected)
@@ -29,7 +30,16 @@ func _ready():
 		Network.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
 		
 func _process(delta: float) -> void:
-	if (!is_multiplayer_authority() || !game_started):
+	if (!is_multiplayer_authority()):
+		return
+	
+	if (!game_started):
+		game_start_timeout -= delta
+		
+		if(game_start_timeout <= 0):
+			game_start_timeout = 10.0
+			Network.end_game.rpc(lobbyScene)
+		
 		return
 	
 	var numPlayers = Network.players.size()

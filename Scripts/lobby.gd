@@ -37,6 +37,9 @@ func _enter_tree():
 		print("Server starting...")
 		on_host_clicked()
 		return
+		
+func _ready():
+	update_lobby_status()
 
 func on_host_clicked():
 	Network.player_info.name = generate_random_name()

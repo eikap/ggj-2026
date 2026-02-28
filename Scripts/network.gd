@@ -23,6 +23,7 @@ var players = {}
 var player_info = {"name": "Name", "node" : null}
 
 var players_loaded = 0
+var players_launching_game = {}
 
 static var past_round_info : Array
 var game_scene : String
@@ -76,6 +77,9 @@ func start_game():
 		
 	if !multiplayer.is_server():
 		return
+		
+	players_launching_game = players.duplicate()
+	players_loaded = 0
 	
 	load_game(game_scene)
 	load_game.rpc(game_scene)
@@ -112,7 +116,8 @@ func end_game(lobby_scene_path):
 func player_loaded():
 	if multiplayer.is_server():
 		players_loaded += 1
-		if players_loaded == players.size():
+		
+		if players_loaded >= players_launching_game.size():
 			$/root/Game.start_game()
 			players_loaded = 0
 
@@ -134,6 +139,7 @@ func _register_player(new_player_info):
 func _on_player_disconnected(id):	
 	player_disconnected.emit(id)
 	players.erase(id)
+	players_launching_game.erase(id)
 
 
 func _on_connected_ok():
