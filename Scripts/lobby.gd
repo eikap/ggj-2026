@@ -32,14 +32,29 @@ func _enter_tree():
 			$VBoxContainer/PlayerList/PlayerListContainer.add_child(playerUINode)
 		
 		statusText.text = Network.past_round_info[0].name
+	elif !Network.error_text.is_empty():
+		statusText.text = Network.error_text
+		Network.error_text = ""
+		
 	
 	if OS.has_feature("dedicated_server"):
 		print("Server starting...")
 		on_host_clicked()
 		return
 		
+	Network.server_disconnected.connect(server_disconnected)
+	Network.server_connection_failed.connect(server_connection_failed)
+		
 func _ready():
 	update_lobby_status()
+	
+func server_disconnected():
+	Network.error_text = "Lost connection to server!"
+	get_tree().change_scene_to_file("res://Scenes/NetworkTest/LobbyTest.tscn")
+
+func server_connection_failed():
+	Network.error_text = "Server connection failed!"
+	get_tree().change_scene_to_file("res://Scenes/NetworkTest/LobbyTest.tscn")
 
 func on_host_clicked():
 	Network.player_info.name = generate_random_name()

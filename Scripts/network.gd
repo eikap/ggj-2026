@@ -6,6 +6,7 @@ extends Node
 signal player_connected(peer_id, player_info)
 signal player_disconnected(peer_id)
 signal server_disconnected
+signal server_connection_failed
 
 const PORT = 7001
 const DEFAULT_SERVER_IP = "wss://ggj26-ws.nas.danieljbradshaw.co.uk" # IPv4 localhost
@@ -25,6 +26,7 @@ var player_info = {"name": "Name", "node" : null}
 var players_loaded = 0
 var players_launching_game = {}
 
+var error_text = ""
 static var past_round_info : Array
 var game_scene : String
 
@@ -151,7 +153,7 @@ func _on_connected_ok():
 
 func _on_connected_fail():
 	remove_multiplayer_peer()
-
+	server_connection_failed.emit()
 
 func _on_server_disconnected():
 	remove_multiplayer_peer()

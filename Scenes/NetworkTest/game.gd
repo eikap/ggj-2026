@@ -8,6 +8,7 @@ var game_start_timeout = 10.0
 
 func _enter_tree():
 	Network.player_disconnected.connect(player_disconnected)
+	Network.server_disconnected.connect(server_disconnected)
 	
 	for playerID in Network.players.keys():
 		var player = playerPrefab.instantiate();
@@ -23,6 +24,11 @@ func player_disconnected(id):
 	if(Network.players[id].has("node")):
 		if(Network.players[id].node):
 			Network.players[id].node.queue_free()
+			
+func server_disconnected():
+	Network.error_text = "Lost connection to server!"
+	Network.past_round_info.clear()
+	get_tree().change_scene_to_file(lobbyScene)
 
 func _ready():
 	# Preconfigure game.
