@@ -21,6 +21,7 @@ func _enter_tree():
 	Network.game_scene = gameScene
 	Network.player_connected.connect(player_connected)
 	Network.player_disconnected.connect(player_disconnected)
+	Network.players_changed.connect(update_lobby_status)
 	load_player_names()
 	
 	if (Network.past_round_info.size() > 0):
@@ -49,7 +50,10 @@ func _ready():
 	update_lobby_status()
 	
 func server_disconnected():
-	Network.error_text = "Lost connection to server!"
+	# If the server did not provide a disconnect reason, report a generic connection loss message
+	if(Network.error_text.is_empty()):
+		Network.error_text = "Lost connection to server!"
+		
 	get_tree().change_scene_to_file("res://Scenes/NetworkTest/LobbyTest.tscn")
 
 func server_connection_failed():
@@ -112,8 +116,6 @@ func player_connected(_peer_id, player_info):
 	playerUINode.isLocalPlayer = _peer_id == multiplayer.get_unique_id()
 	playerUINode.playerName = player_info.name
 	$VBoxContainer/PlayerList/PlayerListContainer.add_child(playerUINode)
-	
-	update_lobby_status()
 
 func player_disconnected(_peer_id):
 	var playerUINodes = $VBoxContainer/PlayerList/PlayerListContainer.get_children()
@@ -122,8 +124,6 @@ func player_disconnected(_peer_id):
 		if (playerUINode.playerName == Network.players[_peer_id].name):
 			$VBoxContainer/PlayerList/PlayerListContainer.remove_child(playerUINode)
 			playerUINode.queue_free()
-		
-	update_lobby_status()
 
 func _on_fullscreen_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:

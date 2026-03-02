@@ -5,6 +5,8 @@ extends Node
 # These signals can be connected to by a UI lobby scene or the game scene.
 signal player_connected(peer_id, player_info)
 signal player_disconnected(peer_id)
+signal players_changed
+
 signal server_disconnected
 signal server_connection_failed
 
@@ -12,6 +14,7 @@ const PORT = 7001
 const DEFAULT_SERVER_IP = "wss://ggj26-ws.nas.danieljbradshaw.co.uk" # IPv4 localhost
 const DEFAULT_SERVER_IP_2 = "wss://balticlight.ovh/ggj26-ws" # IPv4 localhost
 const MAX_CONNECTIONS = 20
+const GAME_PROTOCOL_VERSION = 2
 
 # This will contain player info for every player,
 # with the keys being each player's unique IDs.
@@ -21,7 +24,7 @@ var players = {}
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
-var player_info = {"name": "Name", "node" : null}
+var player_info = {"name": "Name", "node" : null, "game_protocol_version": GAME_PROTOCOL_VERSION}
 
 var players_loaded = 0
 var players_launching_game = {}
@@ -30,6 +33,9 @@ var error_text = ""
 static var past_round_info : Array
 var game_scene : String
 
+var disconnect_queue : Array[int]
+var disconnect_delay = 0
+
 func _ready():
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
@@ -37,7 +43,17 @@ func _ready():
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
-
+func _process(_delta):
+	if(disconnect_delay > 0):
+		disconnect_delay -= 1
+		return
+		
+	if(multiplayer.is_server() && !disconnect_queue.is_empty()):
+		for client in disconnect_queue:
+			multiplayer.multiplayer_peer.disconnect_peer(client)
+		
+		disconnect_queue.clear()
+			
 func join_game(address = ""):
 	if OS.has_feature("production"):
 		address = DEFAULT_SERVER_IP
@@ -134,14 +150,39 @@ func _on_player_connected(id):
 @rpc("any_peer", "reliable")
 func _register_player(new_player_info):
 	var new_player_id = multiplayer.get_remote_sender_id()
+	
+	print("Player %d connected!" % new_player_id)
+	
+	var has_protocol = new_player_info.has("game_protocol_version")
+	
+	if (!has_protocol || new_player_info.game_protocol_version != GAME_PROTOCOL_VERSION):
+		if (multiplayer.is_server()):
+			_server_error.rpc_id(new_player_id, "Outdated game version!")
+			disconnect_queue.append(new_player_id)
+			disconnect_delay = 2
+		
+		print("Protocol mismatch (", new_player_info.game_protocol_version if has_protocol else "invalid", "), rejecting!")
+		return
+	
 	players[new_player_id] = new_player_info
 	player_connected.emit(new_player_id, new_player_info)
+	players_changed.emit()
 
+@rpc
+func _server_error(error):
+	error_text = error
 
-func _on_player_disconnected(id):	
+func _on_player_disconnected(id):
+	print("Player %d connected!" % id)
+	
+	if !players.has(id):
+		print("(nothing to clean up)")
+		return
+	
 	player_disconnected.emit(id)
 	players.erase(id)
 	players_launching_game.erase(id)
+	players_changed.emit()
 
 
 func _on_connected_ok():
